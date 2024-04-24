@@ -20,6 +20,7 @@ public class Controller : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] private float jumpForce;
+    [SerializeField] private float dragDownForce;
     private float jumpForceMultiplier = 1f;
     private bool isJumping = false;
 
@@ -110,6 +111,15 @@ public class Controller : MonoBehaviour
                 }
             }
         }
+
+        if (!isGrounded && !isClimbing)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - dragDownForce);
+        }
+        else if(isGrounded && !isClimbing && rb.velocity.y < 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
+        }
     }
 
     private void HandleWallHang()
@@ -117,13 +127,12 @@ public class Controller : MonoBehaviour
         if (Input.GetKey(KeyCode.E) && canClimb)
         {
             isClimbing = true;
-            rb.gravityScale = 0f;
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
         }
         else if ((!canClimb && isClimbing) ||
                 (Input.GetKey(KeyCode.E) && isClimbing))
         {
             isClimbing = false;
-            rb.gravityScale = 1f;
         }
     }
 

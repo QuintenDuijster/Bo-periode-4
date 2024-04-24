@@ -1,15 +1,24 @@
-using Unity.VisualScripting;
-using UnityEditor.U2D;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Controller : MonoBehaviour
 {
+    private Rigidbody2D rb;
+
+    [Header("Ground check")]
+    [SerializeField] private BoxCollider2D groundCheck;
+    [SerializeField] private List<string> tags;
+    private bool isGrounded = false;
+
+    [Header("Movement")]
     [SerializeField] private float acceleration;
     [SerializeField] private int maxSpeed;
-
-    private Rigidbody2D rb;
     private float movementSpeed = 0f;
+
+    [Header("Jump")]
+    [SerializeField] private float jumpForce;
+    private float jumpForceMultiplier = 1f;
+    private bool isJumping = false;
 
     private void Start()
     {
@@ -20,19 +29,25 @@ public class Controller : MonoBehaviour
     {
         ApplyFriction();
         HandleMove();
+        HandleJump();
     }
 
 
     private void ApplyFriction()
     {
-        GameObject groundMaterial = Physics2D.OverlapCircle(transform.position, 1f).gameObject;
+        GameObject groundMaterial = Physics2D.OverlapArea(groundCheck.bounds.min, groundCheck.bounds.max).gameObject;
 
-        if (groundMaterial != null)
+        if (!tags.Contains(groundMaterial.tag)) 
         {
-            if (groundMaterial.tag == "Ground" && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
-            {
-                movementSpeed *= 0.9f;
-            }
+            isGrounded = false; 
+            return;
+        }
+
+        isGrounded = true;
+        if (groundMaterial.tag == "Ground" && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
+        {
+            isGrounded = true;
+            movementSpeed *= 0.9f;
         }
     }
 
@@ -54,5 +69,32 @@ public class Controller : MonoBehaviour
         }
 
         rb.velocity = new Vector2(movementSpeed, rb.velocity.y);
+    }
+
+    private void HandleJump()
+    {
+        Debug.Log($"{isGrounded} : {isJumping} : {jumpForce} : {jumpForceMultiplier}");
+
+        if (Input.GetKey(KeyCode.Space) && isGrounded)
+        {
+            isJumping = true;
+            if (jumpForceMultiplier < 2f)
+            {
+                jumpForceMultiplier += Time.fixedDeltaTime;
+            }
+            else
+            {
+                jumpForceMultiplier = 2f;
+            }
+        }
+        else
+        {
+            if (isJumping)
+            {
+                isJumping = false;
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce * jumpForceMultiplier);
+                jumpForceMultiplier = 1f;
+            }
+        }
     }
 }

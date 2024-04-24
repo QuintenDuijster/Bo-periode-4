@@ -24,7 +24,6 @@ public class Controller : MonoBehaviour
     private float jumpForceMultiplier = 1f;
     private bool isJumping = false;
 
-
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -34,6 +33,7 @@ public class Controller : MonoBehaviour
     {
         ApplyFriction();
         HandleMove();
+        HandleRotation();
         HandleJump();
         HandleWallHang();
     }
@@ -82,6 +82,18 @@ public class Controller : MonoBehaviour
         rb.velocity = newVelocity;
     }
 
+    private void HandleRotation()
+    {
+        if (movementDirection.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        else if (movementDirection.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+    }
+
     private void HandleJump()
     {
         if (Input.GetKey(KeyCode.Space) && (isGrounded || isClimbing))
@@ -101,14 +113,9 @@ public class Controller : MonoBehaviour
             if (isJumping)
             {
                 isJumping = false;
+                isClimbing = false;
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce * jumpForceMultiplier);
                 jumpForceMultiplier = 1f;
-
-                if (isClimbing)
-                {
-                    isClimbing = false;
-                    rb.gravityScale = 1f;
-                }
             }
         }
 

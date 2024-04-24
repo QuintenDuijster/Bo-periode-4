@@ -1,31 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.U2D;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Controller : MonoBehaviour
 {
-	private Rigidbody2D RB;
-	private float horizontal;
-	private float speed = 1000;
+    [SerializeField] private float acceleration;
+    [SerializeField] private int maxSpeed;
 
-	void Start()
-	{
-		RB = GetComponent<Rigidbody2D>();
-	}
+    private Rigidbody2D rb;
+    private float movementSpeed = 0f;
 
-	void Update()
-	{
-		horizontal = Input.GetAxis("Horizontal");
-	}
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
-	private void FixedUpdate()
-	{
-		move();
-	}
+    private void FixedUpdate()
+    {
+        ApplyFriction();
+        HandleMove();
+    }
 
-	private void move()
-	{
-		Vector2 velocity = new Vector2(horizontal, 0f) * speed;
-		RB.AddForce(velocity * Time.deltaTime);
-	}
+
+    private void ApplyFriction()
+    {
+        GameObject groundMaterial = Physics2D.OverlapCircle(transform.position, 1f).gameObject;
+
+        if (groundMaterial != null)
+        {
+            if (groundMaterial.tag == "Ground" && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
+            {
+                movementSpeed *= 0.9f;
+            }
+        }
+    }
+
+    private void HandleMove()
+    {
+        if (Input.GetKey(KeyCode.D) && movementSpeed < maxSpeed)
+        {
+            movementSpeed += acceleration;
+        }
+
+        if (Input.GetKey(KeyCode.A) && movementSpeed > -maxSpeed)
+        {
+            movementSpeed -= acceleration;
+        }
+
+        if (movementSpeed < -maxSpeed || movementSpeed > maxSpeed)
+        {
+            movementSpeed = Mathf.RoundToInt(movementSpeed / maxSpeed) * maxSpeed;
+        }
+
+        rb.velocity = new Vector2(movementSpeed, rb.velocity.y);
+    }
 }

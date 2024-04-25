@@ -4,7 +4,6 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
-
     private bool isGrounded = false;
 
     [Header("Movement")]
@@ -24,6 +23,15 @@ public class Controller : MonoBehaviour
     private float jumpForceMultiplier = 1f;
     private bool isJumping = false;
 
+
+    [Header("Keys")]
+    [SerializeField] private KeyCode up;
+    [SerializeField] private KeyCode down;
+    [SerializeField] private KeyCode left;
+    [SerializeField] private KeyCode right;
+    [SerializeField] private KeyCode jump;
+    [SerializeField] private KeyCode climb;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,20 +39,21 @@ public class Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ApplyFriction();
+        HandleGravity();
+        HandleFriction();
         HandleMove();
         HandleRotation();
         HandleJump();
         HandleWallHang();
     }
 
-    private void ApplyFriction()
+    private void HandleFriction()
     {
-        if ((isGrounded || isClimbing) && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
+        if ((isGrounded || isClimbing) && !(Input.GetKey(right) || Input.GetKey(left)))
         {
             rb.velocity = new Vector2(rb.velocity.x * 0.9f, rb.velocity.y);
         }
-        if (isClimbing && !(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)))
+        if (isClimbing && !(Input.GetKey(up) || Input.GetKey(down)))
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.9f);
         }
@@ -55,19 +64,19 @@ public class Controller : MonoBehaviour
         movementDirection.x = 0f;
         movementDirection.y = 0f;
 
-        if (Input.GetKey(KeyCode.W) && isClimbing)
+        if (Input.GetKey(up) && isClimbing)
         {
             movementDirection.y = 1;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(left))
         {
             movementDirection.x = -1;
         }
-        if (Input.GetKey(KeyCode.S) && isClimbing)
+        if (Input.GetKey(down) && isClimbing)
         {
             movementDirection.y = -1; 
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(right))
         {
             movementDirection.x = 1; 
         }
@@ -96,7 +105,7 @@ public class Controller : MonoBehaviour
 
     private void HandleJump()
     {
-        if (Input.GetKey(KeyCode.Space) && (isGrounded || isClimbing))
+        if (Input.GetKey(jump) && (isGrounded || isClimbing))
         {
             isJumping = true;
             if (jumpForceMultiplier < 2f)
@@ -118,12 +127,15 @@ public class Controller : MonoBehaviour
                 jumpForceMultiplier = 1f;
             }
         }
+    }
 
+    private void HandleGravity()
+    {
         if (!isGrounded && !isClimbing)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - dragDownForce);
         }
-        else if(isGrounded && !isClimbing && rb.velocity.y < 0f)
+        else if (isGrounded && !isClimbing && rb.velocity.y < 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0f);
         }
@@ -131,13 +143,13 @@ public class Controller : MonoBehaviour
 
     private void HandleWallHang()
     {
-        if (Input.GetKey(KeyCode.E) && canClimb)
+        if (Input.GetKey(climb) && canClimb)
         {
             isClimbing = true;
             rb.velocity = new Vector2(rb.velocity.x, 0f);
         }
         else if ((!canClimb && isClimbing) ||
-                (Input.GetKey(KeyCode.E) && isClimbing))
+                (Input.GetKey(climb) && isClimbing))
         {
             isClimbing = false;
         }

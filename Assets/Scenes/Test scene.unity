@@ -651,6 +651,7 @@ MonoBehaviour:
   maxSpeed: 10
   climbingAcceleration: 1
   maxClimbingSpeed: 5
+  maxClimbingDistance: 25
   jumpForce: 5
   dragDownForce: 0.5
   up: 119

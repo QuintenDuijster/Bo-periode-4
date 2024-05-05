@@ -11,11 +11,14 @@ public class Controller : MonoBehaviour
     [SerializeField] private int maxSpeed;
     private Vector2 movementDirection = new Vector2();
 
-    [Header("Movement")]
+    [Header("Climbing")]
     [SerializeField] private int climbingAcceleration;
     [SerializeField] private int maxClimbingSpeed;
+    [SerializeField] private int maxClimbingDistance;
     private bool canClimb;
     private bool isClimbing;
+    private float distanceClimbed;
+    private Vector3 lastLocation;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce;
@@ -143,17 +146,39 @@ public class Controller : MonoBehaviour
 
     private void HandleWallHang()
     {
-        if (Input.GetKey(climb) && canClimb)
+		Debug.Log($"{distanceClimbed} + {Vector3.Distance(transform.position, lastLocation)} : {isClimbing} : {isGrounded}");
+
+		if (Input.GetKey(climb) && canClimb && distanceClimbed < maxClimbingDistance)
         {
             isClimbing = true;
             rb.velocity = new Vector2(rb.velocity.x, 0f);
+            lastLocation = transform.position;
         }
         else if ((!canClimb && isClimbing) ||
                 (Input.GetKey(climb) && isClimbing))
         {
             isClimbing = false;
         }
-    }
+
+        if (isClimbing)
+        {
+            if (distanceClimbed < maxClimbingDistance)
+            {
+				distanceClimbed += Vector3.Distance(transform.position, lastLocation);
+            }
+            else
+            {
+				isClimbing = false;
+			}
+
+			lastLocation = transform.position;
+		}
+
+        if (isGrounded)
+        {
+            distanceClimbed = 0f;
+        }
+	}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

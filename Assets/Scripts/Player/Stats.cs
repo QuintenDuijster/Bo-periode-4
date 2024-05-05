@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Stats : MonoBehaviour
@@ -34,4 +32,6 @@ public class Stats : MonoBehaviour
             //death screen or somthing
         }
     }
+
+
 }

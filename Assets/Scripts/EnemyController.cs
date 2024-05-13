@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] GameObject player;
+    Rigidbody rb;
+    float2 playerPos;
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+        playerPos.x = player.gameObject.transform.position.x;
+        playerPos.y = player.gameObject.transform.position.y;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+
+    }
+    void approachPlayer()
+    {
+        //rb.velocity = Vector3.Distance();
+        rb.MovePosition(new Vector3(playerPos.x, playerPos.y));
     }
 }

@@ -10,7 +10,7 @@ namespace BossFight
     public class Boss : MonoBehaviour
     {
         [SerializeField]
-        GameObject fist, spear, player, screenBorderLeft, screenBorderRight, floor, skybox;
+        GameObject fist, player, screenBorderLeft, screenBorderRight, floor, skybox;
         [SerializeField]
         bool action = true;
         float difficultyTime = 2f;
@@ -19,8 +19,7 @@ namespace BossFight
 
         void Start()
         {
-            fist = Resources.Load("Prefabs/BossFight/Fist") as GameObject;
-            spear = Resources.Load("Prefabs/BossFight/Spear") as GameObject;
+            fist = Resources.Load("Prefabs/BossFight/Fist") as GameObject
             player = GameObject.FindWithTag("Player");
             screenBorderRight = GameObject.Find("ScreenBorderLeft");
             screenBorderLeft = GameObject.Find("ScreenBorderRight");
@@ -69,7 +68,7 @@ namespace BossFight
 
             if (action && attack == 2)
             {
-                GameObject groundSpears = Instantiate(spear, new Vector3(screenBorderLeft.transform.position.x, floor.transform.position.y, 1), Quaternion.Euler(0,0,0));
+                
             }
             action = false;
         }

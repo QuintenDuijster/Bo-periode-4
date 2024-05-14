@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
@@ -9,18 +10,31 @@ namespace BossFight
     public class GroundSpears : MonoBehaviour
     {
         float distanceS = 0.5f;
-
+        [SerializeField]
+        GameObject spearHoles, spear;
+        private float timeForSpear = 1;
+        int i = 0;
 
         void Start()
         {
-            Instantiate(gameObject, new Vector3(gameObject.transform.position.x + distanceS, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.Euler(0, 0, 0));
+            spearHoles = GameObject.Find("SpearHoles");
+            spear = Resources.Load("Prefabs/BossFight/Spear") as GameObject;
+        }
+
+
+
+        IEnumerable spearTime()
+        {
+            Instantiate(spear, spearHoles.transform.GetChild(i));
+            yield return new WaitForSeconds(timeForSpear);
+            i++;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.tag == "Player")
             {
-                Stats.health -= 1;
+                //Stats.health -= 1;
             }
             else
             {

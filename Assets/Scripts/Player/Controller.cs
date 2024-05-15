@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
     private bool isGrounded = false;
+
 
     [Header("Movement")]
     [SerializeField] private float acceleration;
@@ -203,5 +202,3 @@ public class Controller : MonoBehaviour
 		isGrounded = false;
     }
 }
-
-

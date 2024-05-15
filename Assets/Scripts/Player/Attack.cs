@@ -3,37 +3,84 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    [SerializeField] private GameObject hitArea;
-    [SerializeField] private GameObject throwable;
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            hitArea.SetActive(true);
-        }
-		else
+	[Header("MeleeAttack")]
+	[SerializeField] private GameObject hitArea;
+	[SerializeField] private int meleeCooldown;
+	private float meleeCooldownTimer;
+	private bool canMelee;
+	private bool isAttacking;
+
+	[Header("ThrowAttack")]
+	[SerializeField] private GameObject throwable;
+	[SerializeField] private int throwableSpeed;
+	[SerializeField] private int throwCooldown;
+	private float throwCooldownTimer;
+	private bool canThrow;
+
+	void Update()
+	{
+		if (Input.GetMouseButtonDown(0))
 		{
-			hitArea.SetActive(false);
+			HandleMeleeAttack();
 		}
 
 		if (Input.GetMouseButtonDown(1))
 		{
-            GameObject newThrowable = Instantiate(throwable);
-            Rigidbody2D newThrowable_Rb = newThrowable.GetComponent<Rigidbody2D>();
-            float verticalVelocity = 0f;
-
-            if(transform.rotation.y == 0){
-                verticalVelocity = -10;
-				newThrowable.transform.position = transform.position - new Vector3(1, 0, 0);
-			}
-            else
-            {
-                verticalVelocity = 10;
-				newThrowable.transform.position = transform.position - new Vector3(-1, 0, 0);
-			}
-
-            newThrowable_Rb.velocity = new Vector2 (verticalVelocity, 0.0f);
+			HandleThrowAttack();
 		}
+
+		if (meleeCooldownTimer < meleeCooldown)
+		{
+			meleeCooldownTimer += Time.deltaTime;
+		}
+		else
+		{
+			canMelee = true;
+		}
+
+		if (throwCooldownTimer < throwCooldown)
+		{
+			throwCooldownTimer += Time.deltaTime;
+		}
+		else
+		{
+			canThrow = true;
+		}
+	}
+
+	private void HandleMeleeAttack()
+	{
+		if (canMelee)
+		{
+			canMelee = false;
+
+		}
+	}
+
+	private void HandleThrowAttack()
+	{
+		GameObject newThrowable = Instantiate(throwable);
+		Rigidbody2D newThrowable_Rb = newThrowable.GetComponent<Rigidbody2D>();
+		float verticalVelocity;
+		Vector3 direction;
+
+		if (transform.rotation.y == 0)
+		{
+			direction = new Vector3(1, 0, 0);
+
+			verticalVelocity = -throwableSpeed;
+		}
+		else
+		{
+			direction = new Vector3(-1, 0, 0);
+
+			verticalVelocity = throwableSpeed;
+		}
+
+		newThrowable.transform.position = transform.position - direction;
+
+
+		newThrowable_Rb.velocity = new Vector2(verticalVelocity, 0.0f);
 	}
 }

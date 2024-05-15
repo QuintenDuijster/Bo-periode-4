@@ -193,23 +193,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1971485685505497257, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
       propertyPath: m_margin.x
-      value: -143.66632
+      value: 7.156006
       objectReference: {fileID: 0}
     - target: {fileID: 1971485685505497257, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
       propertyPath: m_margin.z
-      value: 13.613831
+      value: -12.807678
       objectReference: {fileID: 0}
     - target: {fileID: 2828186938084015494, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 233
+      value: 327.1572
       objectReference: {fileID: 0}
     - target: {fileID: 2828186938084015494, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 104
+      value: -0.0000019073
       objectReference: {fileID: 0}
     - target: {fileID: 2828186938084015494, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 119
+      value: 81
       objectReference: {fileID: 0}
     - target: {fileID: 4324280698849041903, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -232,24 +232,44 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5775740810612039208, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 205.9282
+      objectReference: {fileID: 0}
+    - target: {fileID: 5775740810612039208, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0024426
+      value: 10.461
       objectReference: {fileID: 0}
     - target: {fileID: 5775740810612039208, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -29
+      value: -63
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894795656741629084, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894795656741629084, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6976276702630768663, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
       propertyPath: m_text
       value: Replay
       objectReference: {fileID: 0}
+    - target: {fileID: 6976276702630768663, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976276702630768663, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 7005840094602691235, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0024414
+      value: 10.461
       objectReference: {fileID: 0}
     - target: {fileID: 7005840094602691235, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -107
+      value: -131
       objectReference: {fileID: 0}
     - target: {fileID: 7989366569333082781, guid: 3c497805c7aa75c439c8e7a33e7d6dd7, type: 3}
       propertyPath: m_Name
@@ -421,8 +441,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 116.5, y: 34.333}
-  m_SizeDelta: {x: 233, y: 68.6669}
+  m_AnchoredPosition: {x: 10.461, y: 11}
+  m_SizeDelta: {x: 306.2358, y: 53.2544}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1213981084
 MonoBehaviour:
@@ -507,7 +527,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -143.66632, y: 0, z: 13.613831, w: 0}
+  m_margin: {x: -1.6511841, y: 0, z: 1.5042725, w: 1.1009521}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

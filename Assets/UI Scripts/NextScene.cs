@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class NextScene : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
 
     public void LoadScene(int sceneIndex)
     {
-        SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadScene(sceneIndex); // An universal line that you can use to get to any scene if you use the right input for the scene number
     }
 
     public void Quit()
     {
-        Application.Quit();
-        Debug.Log("Quit!");
+        Application.Quit(); // The code to quit the game
+        Debug.Log("Quit!"); 
     }
 }

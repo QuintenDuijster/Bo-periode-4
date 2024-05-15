@@ -7,8 +7,15 @@ using UnityEngine.SceneManagement;
 public class NextScene : MonoBehaviour
 {
     // Start is called before the first frame update
-    public void nextScene()
+
+    public void LoadScene(int sceneIndex)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+        Debug.Log("Quit!");
     }
 }

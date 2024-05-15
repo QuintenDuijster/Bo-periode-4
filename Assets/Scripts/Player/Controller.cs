@@ -1,5 +1,6 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Controller : MonoBehaviour
 {
@@ -71,7 +72,7 @@ public class Controller : MonoBehaviour
         {
             movementDirection.y = 1;
         }
-        if (Input.GetKey(left))
+        if (Input.GetKey(left) && !isClimbing)
         {
             movementDirection.x = -1;
         }
@@ -79,7 +80,7 @@ public class Controller : MonoBehaviour
         {
             movementDirection.y = -1; 
         }
-        if (Input.GetKey(right))
+        if (Input.GetKey(right) && !isClimbing)
         {
             movementDirection.x = 1; 
         }
@@ -94,7 +95,7 @@ public class Controller : MonoBehaviour
         rb.velocity = newVelocity;
     }
 
-    private void HandleRotation()
+	private void HandleRotation()
     {
         if (movementDirection.x < 0)
         {
@@ -144,79 +145,63 @@ public class Controller : MonoBehaviour
         }
     }
 
-    private void HandleWallHang()
-    {
-		Debug.Log($"{distanceClimbed} + {Vector3.Distance(transform.position, lastLocation)} : {isClimbing} : {isGrounded}");
+	private void HandleWallHang()
+	{
+        Debug.Log(canClimb + " : " + isClimbing);
 
 		if (Input.GetKey(climb) && canClimb && distanceClimbed < maxClimbingDistance)
-        {
-            isClimbing = true;
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
-            lastLocation = transform.position;
-        }
-        else if ((!canClimb && isClimbing) ||
-                (Input.GetKey(climb) && isClimbing))
-        {
-            isClimbing = false;
-        }
+		{
+			isClimbing = true;
+			rb.velocity = new Vector2(rb.velocity.x, 0f);
+			lastLocation = transform.position;
+		}
+		else if ((!canClimb && isClimbing) ||
+				(Input.GetKey(climb) && isClimbing))
+		{
+			isClimbing = false;
+		}
 
-        if (isClimbing)
-        {
-            if (distanceClimbed < maxClimbingDistance)
-            {
+		if (isClimbing)
+		{
+			if (distanceClimbed < maxClimbingDistance)
+			{
 				distanceClimbed += Vector3.Distance(transform.position, lastLocation);
-            }
-            else
-            {
+			}
+			else
+			{
 				isClimbing = false;
 			}
 
 			lastLocation = transform.position;
 		}
 
-        if (isGrounded)
-        {
-            distanceClimbed = 0f;
-        }
+		if (isGrounded)
+		{
+			distanceClimbed = 0f;
+		}
 	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        switch (collision.tag)
-        {
-            case "Climbable":
-                canClimb = true;
-                break;
-        }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
+	private void OnCollisionStay2D(Collision2D collision)
     {
-        switch (collision.tag)
-        {
-            case "Climbable":
-                canClimb = false;
-                break;
-        }
-    }
+		Vector3 collisionNormal = collision.contacts[0].normal;
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        switch (collision.gameObject.tag)
+		if (collisionNormal.x == 1 || collisionNormal.x == -1)
+		{
+			canClimb = true;
+		}
+
+        if (collision.gameObject.tag == "Ground" && (collisionNormal.y == 1 || collisionNormal.y == -1))
         {
-            case "Ground":
-                isGrounded = true;
-                break;
-        }
+			isGrounded = true;
+		}
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        switch (collision.gameObject.tag)
-        {
-            case "Ground":
-                isGrounded = false;
-                break;
-        }
+        canClimb = false;
+		isGrounded = false;
     }
 }
+
+

@@ -15,11 +15,13 @@ namespace BossFight
         bool action = true;
         float difficultyTime = 2f;
         float offset = 4;
-        private int attack;
+        private int attack, amountOfAttacks = 3;
+        System.Random random = new();
 
         void Start()
         {
-            fist = Resources.Load("Prefabs/BossFight/Fist") as GameObject
+            
+            fist = Resources.Load("Prefabs/BossFight/Fist") as GameObject;
             player = GameObject.FindWithTag("Player");
             screenBorderRight = GameObject.Find("ScreenBorderLeft");
             screenBorderLeft = GameObject.Find("ScreenBorderRight");
@@ -27,7 +29,11 @@ namespace BossFight
             if (player == null || fist == null || screenBorderLeft == null || screenBorderRight == null)
             {
                 Debug.Log("Loading in Boss.cs went wrong");
+            } else
+            {
+                bossTimer();
             }
+            
         }
 
         void bossTimer()
@@ -44,11 +50,16 @@ namespace BossFight
 
         IEnumerator timer()
         {
-            yield return new WaitForSeconds(difficultyTime);
+            action = false;
+            Debug.Log(action);
 
-            System.Random random = new();
-            attack = random.Next(7);
+            yield return new WaitForSeconds(difficultyTime);
+            
+            
+            attack = random.Next(amountOfAttacks);
             action = true;
+            Debug.Log(action);
+            Debug.Log(attack);
         }
 
         void actions()
@@ -68,14 +79,14 @@ namespace BossFight
 
             if (action && attack == 2)
             {
-                
+                gameObject.AddComponent<GroundSpears>();
             }
             action = false;
         }
 
         void Update()
         {
-            bossTimer();
+            
             actions();
             
         }

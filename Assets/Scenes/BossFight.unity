@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spearHoles: {fileID: 0}
+  spear: {fileID: 0}
 --- !u!1 &239019819
 GameObject:
   m_ObjectHideFlags: 0

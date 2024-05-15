@@ -9,18 +9,22 @@ namespace BossFight
 {
     public class Boss : MonoBehaviour
     {
-        [SerializeField]
-        GameObject fist, player, screenBorderLeft, screenBorderRight, floor, skybox;
-        [SerializeField]
+        System.Random random = new();
+        private GameObject skybox;
         bool action = true;
         float difficultyTime = 2f;
-        float offset = 4;
-        private int attack, amountOfAttacks = 3;
-        System.Random random = new();
+        float offset = 1;
+        private int attack, amountOfAttacks = 2;
+        private GameObject fist;
+        private GameObject player;
+        private GameObject screenBorderLeft;
+        private GameObject screenBorderRight;
+        private GameObject floor;
 
         void Start()
         {
-            
+            floor = GameObject.Find("GroundMesh");
+            skybox = GameObject.Find("SkyBox");
             fist = Resources.Load("Prefabs/BossFight/Fist") as GameObject;
             player = GameObject.FindWithTag("Player");
             screenBorderRight = GameObject.Find("ScreenBorderLeft");
@@ -66,15 +70,15 @@ namespace BossFight
         {
             if (action && attack == 0)
             {
-                GameObject fistLeft = Instantiate(fist, new Vector3(screenBorderLeft.transform.position.x - offset, player.transform.position.y - offset, 0f), Quaternion.Euler(0, 0, 0));
-                GameObject fistRight = Instantiate(fist, new Vector3(screenBorderLeft.transform.position.x + offset, player.transform.position.y + offset, 0f), Quaternion.Euler(0, 180, 0));
+                Instantiate(fist, transform.position, Quaternion.Euler(0, 0, 0));
+                Instantiate(fist, transform.position, Quaternion.Euler(0, 0, -90));
+                
             }
 
             if(action && attack == 1)
             {
-                GameObject fistDown = Instantiate(fist, new Vector3(floor.transform.position.y - offset, player.transform.position.x - offset, 0f), Quaternion.Euler(0, 270, 0));
-                GameObject fistUp = Instantiate(fist, new Vector3(skybox.transform.position.y + offset, player.transform.position.x + offset, 0f), Quaternion.Euler(0, 90, 0));
-
+                Instantiate(fist, transform.position, Quaternion.Euler(0, 0, 180));
+                Instantiate(fist, transform.position, Quaternion.Euler(0, 0, 90));
             }
 
             if (action && attack == 2)

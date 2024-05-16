@@ -9,15 +9,15 @@ namespace BossFight
 {
     public class Boss : MonoBehaviour
     {
+        public GameObject screenBorderLeft, skybox;
+
         System.Random random = new();
-        private GameObject skybox;
-        bool action = true;
+        bool action = false;
         float difficultyTime = 2f;
         float offset = 1;
         private int attack, amountOfAttacks = 2;
         private GameObject fist;
-        private GameObject player;
-        private GameObject screenBorderLeft;
+        private GameObject player;    
         private GameObject screenBorderRight;
         private GameObject floor;
 
@@ -70,15 +70,15 @@ namespace BossFight
         {
             if (action && attack == 0)
             {
-                Instantiate(fist, transform.position, Quaternion.Euler(0, 0, 0));
-                Instantiate(fist, transform.position, Quaternion.Euler(0, 0, -90));
+                Instantiate(fist, screenBorderLeft.transform.position + Vector3.left, Quaternion.Euler(0, 0, 0));
+                Instantiate(fist, screenBorderRight.transform.position + Vector3.right, Quaternion.Euler(0, 0, -90));
                 
             }
 
             if(action && attack == 1)
             {
-                Instantiate(fist, transform.position, Quaternion.Euler(0, 0, 180));
-                Instantiate(fist, transform.position, Quaternion.Euler(0, 0, 90));
+                Instantiate(fist, floor.transform.position + Vector3.down, Quaternion.Euler(0, 0, 180));
+                Instantiate(fist, skybox.transform.position + Vector3.up, Quaternion.Euler(0, 0, 90));
             }
 
             if (action && attack == 2)

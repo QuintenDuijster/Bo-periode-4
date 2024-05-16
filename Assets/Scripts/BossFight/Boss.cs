@@ -12,12 +12,12 @@ namespace BossFight
         public GameObject screenBorderLeft, skybox;
 
         System.Random random = new();
-        bool action = false;
+        bool action = true;
         float difficultyTime = 2f;
         float offset = 1;
         private int attack, amountOfAttacks = 2;
         private GameObject fist;
-        private GameObject player;    
+        public GameObject player;    
         private GameObject screenBorderRight;
         private GameObject floor;
 
@@ -27,8 +27,8 @@ namespace BossFight
             skybox = GameObject.Find("SkyBox");
             fist = Resources.Load("Prefabs/BossFight/Fist") as GameObject;
             player = GameObject.FindWithTag("Player");
-            screenBorderRight = GameObject.Find("ScreenBorderLeft");
-            screenBorderLeft = GameObject.Find("ScreenBorderRight");
+            screenBorderRight = GameObject.Find("ScreenBorderRight");
+            screenBorderLeft = GameObject.Find("ScreenBorderLeft");
 
             if (player == null || fist == null || screenBorderLeft == null || screenBorderRight == null)
             {
@@ -44,6 +44,7 @@ namespace BossFight
         {
             if (action)
             {
+               
                 action = false;
                 if (!action)
                 {
@@ -71,14 +72,13 @@ namespace BossFight
             if (action && attack == 0)
             {
                 Instantiate(fist, screenBorderLeft.transform.position + Vector3.left, Quaternion.Euler(0, 0, 0));
-                Instantiate(fist, screenBorderRight.transform.position + Vector3.right, Quaternion.Euler(0, 0, -90));
-                
+                Instantiate(fist, screenBorderRight.transform.position + Vector3.right, Quaternion.Euler(0, -90, 0));
             }
 
             if(action && attack == 1)
             {
-                Instantiate(fist, floor.transform.position + Vector3.down, Quaternion.Euler(0, 0, 180));
-                Instantiate(fist, skybox.transform.position + Vector3.up, Quaternion.Euler(0, 0, 90));
+                Instantiate(fist, floor.transform.position + Vector3.down, Quaternion.Euler(0, 180, 0));
+                Instantiate(fist, skybox.transform.position + Vector3.up, Quaternion.Euler(0, 90, 0));
             }
 
             if (action && attack == 2)
@@ -90,7 +90,6 @@ namespace BossFight
 
         void Update()
         {
-            
             actions();
             
         }

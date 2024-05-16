@@ -3,38 +3,47 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 namespace BossFight
 {
-    public class MoveFist : Boss
+    public class MoveFist : MonoBehaviour
     {
         int orientation = 1;
         Rigidbody2D rb;
-        float speed = 0.1f;
+        float speed = 4;
         bool h = false;
         GameObject bossRefrence;
         Boss bossSRefrence;
-        
+        bool facingRight;
+
+        int x = 0;
+        int y = 0;
+
         void Start()
         {
-            bossRefrence = GameObject.Find("Boss");
+            bossRefrence = GameObject.Find("BossEObj");
             bossSRefrence = bossRefrence.GetComponent<Boss>();
 
+            Debug.Log($"y: {gameObject.transform.rotation.eulerAngles.y}");
             if (gameObject.transform.rotation.eulerAngles.y == 180)
             {
-                orientation = -1;
+                Debug.Log("test1");
+                y = 1;
             }
 
             if (gameObject.transform.rotation.eulerAngles.y == 90)
             {
-                orientation = -1;
+                Debug.Log("test2");
+                y = -1;
                 h = true;
             }
 
             if (gameObject.transform.rotation.eulerAngles.y == -90)
             {
-                orientation = 1;
+                Debug.Log("test3");
+                x = 1;
                 h= true;
             }
             rb = GetComponent<Rigidbody2D>();
@@ -44,16 +53,9 @@ namespace BossFight
 
         void Update()
         {
-            if (!h)
-            {
-                Vector3 move = new Vector3(bossSRefrence.screenBorderLeft.transform.position.x * orientation, rb.transform.position.y, rb.transform.position.z);
-                transform.position = Vector3.MoveTowards(rb.position, move, Time.deltaTime * speed);
-            }
-            if(h)
-            {
-                Vector3 move = new Vector3(bossSRefrence.skybox.transform.position.y * orientation, rb.transform.position.y * orientation, rb.transform.position.z);
-                transform.position = Vector3.MoveTowards(rb.position, move, Time.deltaTime * speed);
-            }
+            //rb.AddForce(new Vector2(x, y) * speed * Time.deltaTime);
+            Debug.Log($"X: {x}, Y: {y}");
+            transform.position += new Vector3(x, y, 0) * speed * Time.deltaTime;
         }
     }
 }

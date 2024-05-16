@@ -145,7 +145,7 @@ public class Controller : MonoBehaviour
 
     internal void HandleWallHang()
     {
-		Debug.Log($"{distanceClimbed} + {Vector3.Distance(transform.position, lastLocation)} : {isClimbing} : {canJump}");
+		//Debug.Log($"{distanceClimbed} + {Vector3.Distance(transform.position, lastLocation)} : {isClimbing} : {canJump}");
 
 		if (Input.GetKey(climb) && canClimb && distanceClimbed < maxClimbingDistance)
         {

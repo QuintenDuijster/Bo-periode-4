@@ -30,19 +30,5 @@ namespace BossFight
             i++;
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (collision.gameObject.tag == "Player")
-            {
-                //Stats.health -= 1;
-            }
-            else
-            {
-                Debug.Log("Not player hit - GroundSpears.cs");
-            }
-        }
-
     }
-
-
 }

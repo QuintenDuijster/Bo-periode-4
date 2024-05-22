@@ -10,52 +10,19 @@ namespace BossFight
 {
     public class MoveFist : MonoBehaviour
     {
-        int orientation = 1;
-        Rigidbody2D rb;
-        float speed = 4;
-        bool h = false;
-        GameObject bossRefrence;
-        Boss bossSRefrence;
-        bool facingRight;
+        float speed = 0.01f;
+        int damage = 1;
 
-        int x = 0;
-        int y = 0;
+        public int Damage { get => damage; }
 
-        void Start()
+        private void Start()
         {
-            bossRefrence = GameObject.Find("BossEObj");
-            bossSRefrence = bossRefrence.GetComponent<Boss>();
-
-            Debug.Log($"y: {gameObject.transform.rotation.eulerAngles.y}");
-            if (gameObject.transform.rotation.eulerAngles.y == 180)
-            {
-                Debug.Log("test1");
-                y = 1;
-            }
-
-            if (gameObject.transform.rotation.eulerAngles.y == 90)
-            {
-                Debug.Log("test2");
-                y = -1;
-                h = true;
-            }
-
-            if (gameObject.transform.rotation.eulerAngles.y == -90)
-            {
-                Debug.Log("test3");
-                x = 1;
-                h= true;
-            }
-            rb = GetComponent<Rigidbody2D>();
-
-            Destroy(gameObject, 5);
+            Destroy(gameObject, 4);
         }
 
         void Update()
         {
-            //rb.AddForce(new Vector2(x, y) * speed * Time.deltaTime);
-            Debug.Log($"X: {x}, Y: {y}");
-            transform.position += new Vector3(x, y, 0) * speed * Time.deltaTime;
+            gameObject.transform.Translate(Vector2.up * speed, Space.Self);
         }
     }
 }

@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
 	[SerializeField] private int maxHealth;
-	private int health { get; set; }
+	private int health;
+	bool dead = false;
 
-	public void addHealth(int index)
+    public int Healthgetset { get => health; set => health = value; }
+    public int MaxHealth { get => maxHealth; set => maxHealth = value; }
+    public bool Dead { get => dead; }
+
+    public void addHealth(int index)
 	{
 		int newHealth = health;
-		if (maxHealth < (newHealth + index))
+		if (MaxHealth < (newHealth + index))
 		{
-			health = maxHealth;
+			health = MaxHealth;
 		}
 		else
 		{
@@ -22,14 +28,15 @@ public class Health : MonoBehaviour
 
 	private void Start()
 	{
-		health = maxHealth;
+		health = MaxHealth;
 	}
 
 	private void Update()
 	{
 		if (health < 0)
 		{
-
+			dead = true;
+			Destroy(gameObject);
 		}
 	}
 }

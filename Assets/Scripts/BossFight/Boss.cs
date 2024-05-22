@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 //let op action var is nog niet goed afgesteld
@@ -62,9 +61,9 @@ namespace BossFight
 
 
             yield return new WaitForSeconds(difficultyTime);
-            
-            
-            attack = random.Next(amountOfAttacks);
+
+
+            attack = 2;/*random.Next(amountOfAttacks);*/
             action = true;
 
             if(!health.Dead)

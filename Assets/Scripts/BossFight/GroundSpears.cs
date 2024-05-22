@@ -17,17 +17,13 @@ namespace BossFight
 
         void Start()
         {
-            spearHoles = GameObject.Find("SpearHoles");
+            spearHoles = GameObject.Find("GroundSpears");
             spear = Resources.Load("Prefabs/BossFight/Spear") as GameObject;
-        }
 
-
-
-        IEnumerable spearTime()
-        {
-            Instantiate(spear, spearHoles.transform.GetChild(i));
-            yield return new WaitForSeconds(timeForSpear);
-            i++;
+            for (int i = 0; i < spearHoles.transform.childCount; i++)
+            {
+                Instantiate(spear, spearHoles.transform.GetChild(i));
+            }
         }
 
     }

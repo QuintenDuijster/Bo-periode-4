@@ -1,86 +1,84 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-
-	[Header("MeleeAttack")]
 	[SerializeField] private GameObject hitArea;
-	[SerializeField] private int meleeCooldown;
-	private float meleeCooldownTimer;
-	private bool canMelee;
-	private bool isAttacking;
+	[SerializeField] private GameObject Throwable;
 
-	[Header("ThrowAttack")]
-	[SerializeField] private GameObject throwable;
-	[SerializeField] private int throwableSpeed;
-	[SerializeField] private int throwCooldown;
-	private float throwCooldownTimer;
-	private bool canThrow;
+	private GameObject test;
 
-	void Update()
+	private bool canAttack = true;
+	private bool isAttacking = false;
+	private float AttackCooldownTimer = 0;
+	private float MeleeCooldown = 2;
+	private float ThrowCooldown = 2;
+
+	private void Update()
 	{
-		if (Input.GetMouseButtonDown(0))
+		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+
+		HandlePosition(mousePosition);
+		HandleRotation(mousePosition);
+		HandleMelee();
+		HandleThrow(mousePosition);
+	}
+
+	private void HandlePosition(Vector3 mousePosition)
+	{
+		double yDist = mousePosition.y - hitArea.transform.position.y;
+		double xDist = mousePosition.x - hitArea.transform.position.x;
+
+		double rad = Math.Atan2(yDist, xDist);
+
+		Vector3 position = new Vector3(Mathf.Cos((float)rad), Mathf.Sin((float)rad), 0);
+
+		if (Vector3.Distance(mousePosition, transform.position) > Vector3.Distance(hitArea.transform.position, transform.position))
 		{
-			HandleMeleeAttack();
+			hitArea.transform.position = transform.position + position;
+		}
+	}
+
+	private void HandleRotation(Vector3 mousePosition)
+	{
+		float AngleRad = Mathf.Atan2(mousePosition.y - hitArea.transform.position.y, mousePosition.x - hitArea.transform.position.x);
+		float angle = (180 / Mathf.PI) * AngleRad;
+
+		hitArea.transform.rotation = Quaternion.Euler(0, 0, angle);
+	}
+
+	private void HandleMelee()
+	{
+		if (Input.GetMouseButtonDown(0) && canAttack)
+		{
+			hitArea.SetActive(true);
+			canAttack = false;
+			isAttacking = true;
+			AttackCooldownTimer = 0;
 		}
 
+		if (isAttacking)
+		{
+			AttackCooldownTimer += Time.deltaTime;
+			if (AttackCooldownTimer >= MeleeCooldown)
+			{
+				hitArea.SetActive(false);
+				isAttacking = false;
+				canAttack = true;
+			}
+		}
+	}
+
+	private void HandleThrow(Vector3 mousePosition)
+	{
 		if (Input.GetMouseButtonDown(1))
 		{
-			HandleThrowAttack();
+			test = Instantiate(Throwable);
+			test.transform.LookAt(mousePosition);
+			test.transform.position = transform.position + new Vector3 (1f, 1f, 0);
+			Rigidbody2D rb = test.GetComponent<Rigidbody2D>();
+			rb.AddForce(new Vector3(700, 0, 0));
 		}
-
-		if (meleeCooldownTimer < meleeCooldown)
-		{
-			meleeCooldownTimer += Time.deltaTime;
-		}
-		else
-		{
-			canMelee = true;
-		}
-
-		if (throwCooldownTimer < throwCooldown)
-		{
-			throwCooldownTimer += Time.deltaTime;
-		}
-		else
-		{
-			canThrow = true;
-		}
-	}
-
-	private void HandleMeleeAttack()
-	{
-		if (canMelee)
-		{
-			canMelee = false;
-
-		}
-	}
-
-	private void HandleThrowAttack()
-	{
-		GameObject newThrowable = Instantiate(throwable);
-		Rigidbody2D newThrowable_Rb = newThrowable.GetComponent<Rigidbody2D>();
-		float verticalVelocity;
-		Vector3 direction;
-
-		if (transform.rotation.y == 0)
-		{
-			direction = new Vector3(1, 0, 0);
-
-			verticalVelocity = -throwableSpeed;
-		}
-		else
-		{
-			direction = new Vector3(-1, 0, 0);
-
-			verticalVelocity = throwableSpeed;
-		}
-
-		newThrowable.transform.position = transform.position - direction;
-
-
-		newThrowable_Rb.velocity = new Vector2(verticalVelocity, 0.0f);
 	}
 }

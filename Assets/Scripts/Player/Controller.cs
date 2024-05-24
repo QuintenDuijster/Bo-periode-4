@@ -146,8 +146,6 @@ public class Controller : MonoBehaviour
 
 	private void HandleWallHang()
 	{
-        Debug.Log(canClimb + " : " + isClimbing);
-
 		if (Input.GetKey(climb) && canClimb && distanceClimbed < maxClimbingDistance)
 		{
 			isClimbing = true;

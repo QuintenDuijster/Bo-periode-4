@@ -5,7 +5,6 @@ public class Controller : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded = false;
 
-
     [Header("Movement")]
     [SerializeField] private float acceleration;
     [SerializeField] private int maxSpeed;
@@ -15,7 +14,6 @@ public class Controller : MonoBehaviour
     [SerializeField] private int climbingAcceleration;
     [SerializeField] private int maxClimbingSpeed;
     [SerializeField] private int maxClimbingDistance;
-    private bool canClimb;
     private bool isClimbing;
     private float distanceClimbed;
     private Vector3 lastLocation;
@@ -33,11 +31,10 @@ public class Controller : MonoBehaviour
     [SerializeField] private KeyCode left;
     [SerializeField] private KeyCode right;
     [SerializeField] private KeyCode jump;
-    [SerializeField] private KeyCode climb;
 
     private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
+    { 
+		rb = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
@@ -146,18 +143,6 @@ public class Controller : MonoBehaviour
 
 	private void HandleWallHang()
 	{
-		if (Input.GetKey(climb) && canClimb && distanceClimbed < maxClimbingDistance)
-		{
-			isClimbing = true;
-			rb.velocity = new Vector2(rb.velocity.x, 0f);
-			lastLocation = transform.position;
-		}
-		else if ((!canClimb && isClimbing) ||
-				(Input.GetKey(climb) && isClimbing))
-		{
-			isClimbing = false;
-		}
-
 		if (isClimbing)
 		{
 			if (distanceClimbed < maxClimbingDistance)
@@ -178,17 +163,16 @@ public class Controller : MonoBehaviour
 		}
 	}
 
-
 	private void OnCollisionStay2D(Collision2D collision)
     {
 		Vector3 collisionNormal = collision.contacts[0].normal;
 
-		if (collisionNormal.x == 1 || collisionNormal.x == -1)
+		if (!isClimbing && (collisionNormal.x == 1 || collisionNormal.x == -1))
 		{
-			canClimb = true;
+			isClimbing = true;
 		}
 
-        if (collision.gameObject.tag == "Ground" && (collisionNormal.y == 1 || collisionNormal.y == -1))
+        if (collisionNormal.y == 1)
         {
 			isGrounded = true;
 		}
@@ -196,7 +180,7 @@ public class Controller : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        canClimb = false;
+        isClimbing = false;
 		isGrounded = false;
     }
 }

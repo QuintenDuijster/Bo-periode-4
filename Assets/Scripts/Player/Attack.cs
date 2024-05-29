@@ -6,8 +6,6 @@ public class Attack : MonoBehaviour
 	[SerializeField] private GameObject hitArea;
 	[SerializeField] private GameObject Throwable;
 
-	private GameObject test;
-
 	private bool canAttack = true;
 	private bool isAttacking = false;
 	private float AttackCooldownTimer = 0;
@@ -74,10 +72,17 @@ public class Attack : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown(1))
 		{
-			test = Instantiate(Throwable);
-			test.transform.LookAt(mousePosition);
-			test.transform.position = transform.position + new Vector3 (1f, 1f, 0);
-			Rigidbody2D rb = test.GetComponent<Rigidbody2D>();
+			GameObject newThrowable;
+			newThrowable = Instantiate(Throwable);
+
+			Quaternion rotation = Quaternion.LookRotation(
+			mousePosition - newThrowable.transform.position,
+			newThrowable.transform.TransformDirection(Vector3.up)
+			);
+			newThrowable.transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
+
+			newThrowable.transform.position = transform.position + new Vector3(0, 2f, 0);
+			Rigidbody2D rb = newThrowable.GetComponent<Rigidbody2D>();
 			rb.AddForce(new Vector3(700, 0, 0));
 		}
 	}

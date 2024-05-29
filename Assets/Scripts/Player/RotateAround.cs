@@ -10,12 +10,10 @@ public class RotateAround : MonoBehaviour
 
 	public Camera cam;
 
-
 	void Awake()
 	{
 		cam = Camera.main;
 	}
-
 
 	void Update()
 	{
@@ -27,8 +25,6 @@ public class RotateAround : MonoBehaviour
 		double rad = Math.Atan2(yDist, xDist);
 
 		Vector3 position = new Vector3(Mathf.Cos((float)rad), Mathf.Sin((float)rad), 0);
-
-		Debug.Log(Vector3.Distance(mousePosition, transform.position) + " : " + Vector3.Distance(hitArea.transform.position, transform.position));
 
 		if (Vector3.Distance(mousePosition, transform.position) > Vector3.Distance(hitArea.transform.position, transform.position))
 		{

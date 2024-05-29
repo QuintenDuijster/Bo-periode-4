@@ -3,11 +3,20 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+<<<<<<< Updated upstream
 	[SerializeField] private GameObject hitArea;
 	[SerializeField] private GameObject Throwable;
+=======
+    private Controller controller;
+
+    [Header("Keys")]
+    [SerializeField] private KeyCode attack;
+    [SerializeField] private KeyCode throwWeapon;
+>>>>>>> Stashed changes
 
 	private GameObject test;
 
+<<<<<<< Updated upstream
 	private bool canAttack = true;
 	private bool isAttacking = false;
 	private float AttackCooldownTimer = 0;
@@ -82,3 +91,19 @@ public class Attack : MonoBehaviour
 		}
 	}
 }
+=======
+    void Start()
+    {
+        controller = GetComponent<Controller>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKey(attack))
+        {
+            isAttacking = true;
+        }
+
+    }
+}
+>>>>>>> Stashed changes

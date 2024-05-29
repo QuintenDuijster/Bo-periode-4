@@ -4,6 +4,7 @@ public class Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
     private bool isGrounded = false;
+    internal bool isFacingRight = true;
 
 
     [Header("Movement")]
@@ -52,11 +53,11 @@ public class Controller : MonoBehaviour
 
     private void HandleFriction()
     {
-        if ((isGrounded || isClimbing) && !(Input.GetKey(right) || Input.GetKey(left)))
+        if ((isGrounded || isClimbing) && !(Input.GetKey(right) || !Input.GetKey(left)))
         {
             rb.velocity = new Vector2(rb.velocity.x * 0.9f, rb.velocity.y);
         }
-        if (isClimbing && !(Input.GetKey(up) || Input.GetKey(down)))
+        if (isClimbing && !(Input.GetKey(up) || !Input.GetKey(down)))
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.9f);
         }
@@ -144,8 +145,13 @@ public class Controller : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
 	private void HandleWallHang()
 	{
+=======
+    private void HandleWallHang()
+    {
+>>>>>>> Stashed changes
 		if (Input.GetKey(climb) && canClimb && distanceClimbed < maxClimbingDistance)
 		{
 			isClimbing = true;

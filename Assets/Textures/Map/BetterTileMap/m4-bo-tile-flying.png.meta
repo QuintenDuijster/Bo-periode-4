@@ -1,0 +1,1227 @@
+fileFormatVersion: 2
+guid: eb3bde360c65a9e42844b232a82e1895
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1860
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8004a6c99857a7d42b020fa2dc8ae2e6
+      internalID: -24696674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_1
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 1860
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad2a9becd815e66438192db3240eb756
+      internalID: -1695293806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_2
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1860
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 944e3f18f3628f84e9cfbc7cb97411fe
+      internalID: 717130487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_3
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 1860
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71c69eb68084d5b4cba3a9d88ba6c7ae
+      internalID: -2004771577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_4
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1860
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bba04e6e932e4a4a9c43f1c193e02b2
+      internalID: 77743885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_5
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 1860
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c66067e7b076574ca75419e3ff4b2c7
+      internalID: 446610943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_6
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1860
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5232b7af601511459cec6e76c7fc7c8
+      internalID: 279952039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_7
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 1860
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1506d377a48f3bb4d84b779e5baa40a8
+      internalID: 924687387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_8
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 1860
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcb605ba693a4ad44a63ffc3a14b4e73
+      internalID: 257013745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1560
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cc86d43fd8446b4a9a0994172d444d1
+      internalID: 1786178865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_10
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 1560
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b986e1fbac58084e9d9d93b1548b284
+      internalID: -1404879290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_11
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1560
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9972d9c635f79e442804daf962eb00a0
+      internalID: 125445322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_12
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 1560
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d023d684180cde419eb43be1a40b762
+      internalID: 619407660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_13
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1560
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05026149d64ecb74c92973b884127f43
+      internalID: -368436407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_14
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 1560
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b43ca091359633e419461983594981cb
+      internalID: -1019629108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_15
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1560
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0eb63ab1011911a4b9018e53ea21c12d
+      internalID: 2129525761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_16
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 1560
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dc241ed20f937a48af929fd13e78a11
+      internalID: 1128872994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_17
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 1560
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 979277b3e6a4dd646a888109e9c0daa0
+      internalID: -1661674933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1260
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 302d9b449a2ece944bbe36ea278823bd
+      internalID: 1857740136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_19
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 1260
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44190c4c92c89bf43a01ce973cf139cf
+      internalID: -1707747567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_20
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1260
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d781cc3f29a4d194893ad9188dd24564
+      internalID: 1842149555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_21
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 1260
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e0511bdf0c0ba342b9f75283f66c597
+      internalID: 1768073062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_22
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1260
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b21d8048a3c3cb458c3cce237ef3571
+      internalID: -117792062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_23
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 1260
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f875ae5d9a8e2d048b809157f0d16000
+      internalID: -1653001443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_24
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1260
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e5032a569a94eb45bba108507483651
+      internalID: -1338919355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_25
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 1260
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fee61c0ffa564f49918d88e04493e80
+      internalID: 349923986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_26
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 1260
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 794995864d88eaf4395a7678a872dac7
+      internalID: -2040635158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_27
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 1260
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b94dde716c205cc41b38dea3ee1ada43
+      internalID: 1075356554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_28
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 1260
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7469c19c285540443a0aa3e9ce6e450b
+      internalID: -902993854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 960
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cebe7fd3f0dc3a46beb5e1bd688171b
+      internalID: 1453282552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_30
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 960
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a67982e05d4e7d459e08dee87068677
+      internalID: -1856578564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_31
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 960
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9901ee4470b1bb641b9a4f071ea1def1
+      internalID: 1995267982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_32
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 960
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb89781bd1812db48aba2cb9189173ae
+      internalID: -868243216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_33
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 960
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a2290721b54b044e88e771f32ca35d8
+      internalID: -957430529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_34
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 960
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b3d05f5bdb5cd841bf33477d72605d9
+      internalID: 889033517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_35
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 960
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37ff7f88435a2b544b28166e3015faa1
+      internalID: -1987379436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_36
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 960
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4a15e97a1bfa4d4389bd37978c59091
+      internalID: -1174481597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_37
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 960
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a1e7520e8df98446b543794578fd0fc
+      internalID: -1252508828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_38
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 960
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f11f9afd6fac7b4da3e02da0a013d6c
+      internalID: 375965299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_39
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 960
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8d1ce58333a4f248ad426bef7c76a3e
+      internalID: -245958226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 660
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0f611c4cbbc9614193121ce8a7c7fff
+      internalID: 2037284451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_41
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 660
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c98621b0e4adb92498f3823a14a78390
+      internalID: 873190614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_42
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 660
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f955c40177f44844bf542008560cd78
+      internalID: -2138162435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_43
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 660
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b3f60fc37384d4fae4bd1d9a52729d
+      internalID: -1887480359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_44
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 660
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 719873e2d306cf44ab864f31572138da
+      internalID: 506523041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_45
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 660
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f79fa3a3b75beb240b8338d8a9dc699a
+      internalID: -1795040286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_46
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 660
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 417f52f997b6b1249a1470418be8c256
+      internalID: -819708408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_47
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 660
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 782109b68a6fa4f48a64916ff9ec29b5
+      internalID: 811889004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_48
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 660
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 861246b1e65fe84469ce4135c0964146
+      internalID: 1269621268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: m4-bo-tile-flying_49
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 60
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4d7f36903ddef84b955001109b19571
+      internalID: -2039904469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      m4-bo-tile-flying_0: -24696674
+      m4-bo-tile-flying_1: -1695293806
+      m4-bo-tile-flying_10: -1404879290
+      m4-bo-tile-flying_11: 125445322
+      m4-bo-tile-flying_12: 619407660
+      m4-bo-tile-flying_13: -368436407
+      m4-bo-tile-flying_14: -1019629108
+      m4-bo-tile-flying_15: 2129525761
+      m4-bo-tile-flying_16: 1128872994
+      m4-bo-tile-flying_17: -1661674933
+      m4-bo-tile-flying_18: 1857740136
+      m4-bo-tile-flying_19: -1707747567
+      m4-bo-tile-flying_2: 717130487
+      m4-bo-tile-flying_20: 1842149555
+      m4-bo-tile-flying_21: 1768073062
+      m4-bo-tile-flying_22: -117792062
+      m4-bo-tile-flying_23: -1653001443
+      m4-bo-tile-flying_24: -1338919355
+      m4-bo-tile-flying_25: 349923986
+      m4-bo-tile-flying_26: -2040635158
+      m4-bo-tile-flying_27: 1075356554
+      m4-bo-tile-flying_28: -902993854
+      m4-bo-tile-flying_29: 1453282552
+      m4-bo-tile-flying_3: -2004771577
+      m4-bo-tile-flying_30: -1856578564
+      m4-bo-tile-flying_31: 1995267982
+      m4-bo-tile-flying_32: -868243216
+      m4-bo-tile-flying_33: -957430529
+      m4-bo-tile-flying_34: 889033517
+      m4-bo-tile-flying_35: -1987379436
+      m4-bo-tile-flying_36: -1174481597
+      m4-bo-tile-flying_37: -1252508828
+      m4-bo-tile-flying_38: 375965299
+      m4-bo-tile-flying_39: -245958226
+      m4-bo-tile-flying_4: 77743885
+      m4-bo-tile-flying_40: 2037284451
+      m4-bo-tile-flying_41: 873190614
+      m4-bo-tile-flying_42: -2138162435
+      m4-bo-tile-flying_43: -1887480359
+      m4-bo-tile-flying_44: 506523041
+      m4-bo-tile-flying_45: -1795040286
+      m4-bo-tile-flying_46: -819708408
+      m4-bo-tile-flying_47: 811889004
+      m4-bo-tile-flying_48: 1269621268
+      m4-bo-tile-flying_49: -2039904469
+      m4-bo-tile-flying_5: 446610943
+      m4-bo-tile-flying_6: 279952039
+      m4-bo-tile-flying_7: 924687387
+      m4-bo-tile-flying_8: 257013745
+      m4-bo-tile-flying_9: 1786178865
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

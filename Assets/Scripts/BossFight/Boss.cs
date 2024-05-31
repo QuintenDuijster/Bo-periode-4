@@ -12,12 +12,12 @@ namespace BossFight
     {
         public GameObject screenBorderLeft, skybox;
 
-        System.Random random = new();
+        public static System.Random random = new();
         bool action = true;
         float difficultyTime = 4f;
         private int attack, amountOfAttacks = 2;
-        private GameObject fist;
-        public GameObject player;    
+        private GameObject fist, beam;
+        public static GameObject player1;    
         private GameObject screenBorderRight;
         private GameObject floor;
         Health health;
@@ -29,11 +29,12 @@ namespace BossFight
             floor = GameObject.Find("GroundMesh");
             skybox = GameObject.Find("SkyBox");
             fist = Resources.Load("Prefabs/BossFight/Fist") as GameObject;
-            player = GameObject.FindWithTag("Player");
+            player1 = GameObject.FindWithTag("Player");
+            beam = Resources.Load("Prefabs/BossFight/Beam") as GameObject;
             screenBorderRight = GameObject.Find("ScreenBorderRight");
             screenBorderLeft = GameObject.Find("ScreenBorderLeft"); 
 
-            if (player == null || fist == null || screenBorderLeft == null || screenBorderRight == null)
+            if (player1 == null || fist == null || screenBorderLeft == null || screenBorderRight == null || beam == null)
             {
                 Debug.Log("Loading in Boss.cs went wrong");
             }
@@ -63,7 +64,7 @@ namespace BossFight
             yield return new WaitForSeconds(difficultyTime);
 
 
-            attack = 2;/*random.Next(amountOfAttacks);*/
+            attack = 3;/*random.Next(amountOfAttacks);*/
             action = true;
 
             if(!health.Dead)
@@ -99,6 +100,13 @@ namespace BossFight
             {
                 gameObject.AddComponent<GroundSpears>();
             }
+
+            if (action && attack == 3)
+            {
+                Debug.Log("pin");
+                Instantiate(beam, new Vector3(player1.transform.position.x, 0.5f, 0), Quaternion.Euler(0, 0, 0));
+            }
+
             action = false;
         }
 

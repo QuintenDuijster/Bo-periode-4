@@ -14,7 +14,9 @@ namespace BossFight
         GameObject spearHoles, spear;
         private float timeForSpear = 1;
         int i = 0;
+        int damage = 1;
 
+        public int Damage { get => damage; }
         void Start()
         {
             spearHoles = GameObject.Find("GroundSpears");

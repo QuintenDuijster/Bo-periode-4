@@ -9,12 +9,12 @@ namespace BossFight
 {
     public class GroundSpears : MonoBehaviour
     {
-        float distanceS = 0.5f;
         [SerializeField]
         GameObject spearHoles, spear;
         private float timeForSpear = 1;
         int i = 0;
         int damage = 1;
+        private bool othaWay;
 
         public int Damage { get => damage; }
         void Start()
@@ -22,11 +22,35 @@ namespace BossFight
             spearHoles = GameObject.Find("GroundSpears");
             spear = Resources.Load("Prefabs/BossFight/Spear") as GameObject;
 
-            for (int i = 0; i < spearHoles.transform.childCount; i++)
-            {
-                Instantiate(spear, spearHoles.transform.GetChild(i));
-            }
+            StartCoroutine(spearTimer());
         }
 
+        IEnumerator spearTimer()
+        {
+
+            Instantiate(spear, spearHoles.transform.GetChild(i));
+            Debug.Log(i);
+            if (i < 4 && othaWay == false)
+            {
+                i++;
+                
+                if (i == 4)
+                {
+                    Debug.Log(othaWay);
+                    othaWay = true;
+                }
+            } 
+            else
+            {
+                i--;
+                if (i == -1)
+                {
+                    Destroy(this);
+                }
+            }
+            yield return new WaitForSeconds(timeForSpear);
+
+            StartCoroutine(spearTimer());
+        }
     }
 }

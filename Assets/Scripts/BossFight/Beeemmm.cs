@@ -7,14 +7,13 @@ public class Beeemmm : MonoBehaviour
 {
     int damage = 0;
     int direction;
-    
+    Vector3 velocity = Vector3.zero; 
+
     public int Damage { get => damage; }
     void Start()
     {
-        int randomNumber = Boss.random.Next(2);
-        int result = randomNumber == 0 ? -1 : 1;
-        Debug.Log(result);
         Invoke("SetDamage" , 1);
+        Destroy(gameObject, 4);
     }
 
     void SetDamage()
@@ -24,6 +23,6 @@ public class Beeemmm : MonoBehaviour
 
     void Update()
     {
-        transform.position = Vector3.SmoothDamp(Boss.player1.)
+        transform.position = Vector3.SmoothDamp(gameObject.transform.position, new Vector3(Boss.player1.transform.position.x, 0), ref velocity, 0.3f, 7, Time.deltaTime);
     }
 }

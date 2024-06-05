@@ -64,13 +64,13 @@ namespace BossFight
             yield return new WaitForSeconds(difficultyTime);
 
 
-            attack = 3;/*random.Next(amountOfAttacks);*/
+            attack = 2;/*random.Next(amountOfAttacks);*/
             action = true;
 
             if(!health.Dead)
             {
                 actions();
-                StartCoroutine("timer");
+                //StartCoroutine("timer");
 
             } else
             {
@@ -103,7 +103,6 @@ namespace BossFight
 
             if (action && attack == 3)
             {
-                Debug.Log("pin");
                 Instantiate(beam, new Vector3(player1.transform.position.x, 0.5f, 0), Quaternion.Euler(0, 0, 0));
             }
 

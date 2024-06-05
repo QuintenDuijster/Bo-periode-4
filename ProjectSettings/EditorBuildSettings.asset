@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EarthPlatformLevel1.unity
-    guid: 08dac82e067f3c84bada57dfa643c646
-  - enabled: 1
+    guid: b00f25bfceeffb84a9dd61b31a59a24a
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/EarthPlatformingLevel2.unity
+    guid: dc909d561caaf2c4eb65ebbb65758516
   m_configObjects: {}

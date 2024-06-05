@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
@@ -14,7 +15,8 @@ namespace BossFight
         private float timeForSpear = 1;
         int i = 0;
         int damage = 1;
-        private bool help = true;
+        private bool help = true, started = false;
+        
 
         public int Damage { get => damage; }
         void Start()
@@ -27,12 +29,17 @@ namespace BossFight
 
         IEnumerator spearTimer()
         {
-            for (i = i; i < spearHoles.transform.childCount; i += help ? 1 : -1)
+            for (i = i; i < spearHoles.transform.childCount || i > -1; i += help ? 1 : -1)
             {
-                if (i >= spearHoles.transform.childCount)
+                if (i >= spearHoles.transform.childCount - 1)
                 {
                     help = false;
-                    StartCoroutine(spearTimer());
+                    if (!started)
+                    {
+                        started = true;
+                        StartCoroutine(spearTimer());
+                        
+                    }
                 }
                 else if (i <= -1)
                 {

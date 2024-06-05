@@ -339,7 +339,7 @@ Transform:
   m_GameObject: {fileID: 534126533}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.89, y: -0.81, z: 0}
+  m_LocalPosition: {x: 8.6, y: -0.62, z: 0}
   m_LocalScale: {x: 1, y: 7.4068, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -584,7 +584,7 @@ Transform:
   m_GameObject: {fileID: 819925807}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2961, y: -1.6661, z: 0}
+  m_LocalPosition: {x: -0.42, y: -1.6661, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -603,19 +603,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0394e8cc8f643e4d8b9ee4b96c9b56a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitArea: {fileID: 1253168176}
   acceleration: 2
   maxSpeed: 10
   climbingAcceleration: 1
   maxClimbingSpeed: 5
-  maxClimbingDistance: 25
-  jumpForce: 5
-  dragDownForce: 0.5
+  maxClimbingDistance: 10
+  climbingCooldown: 0.3
+  jumpForce: 8
+  dragDownForce: 0.6
+  dashForce: 5000
+  dashCooldown: 2
   up: 119
   down: 115
   left: 97
   right: 100
   jump: 32
-  climb: 101
+  dash: 108
 --- !u!114 &819925813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,7 +633,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitArea: {fileID: 1253168176}
+  meleeCooldown: 1
+  meleeDamage: 2
   Throwable: {fileID: 6240550344276336253, guid: a71b326f572064d4a8f73e92df515ea2, type: 3}
+  throwCooldown: 1.5
+  throwForce: 900
+  ThrowDamage: 3
+  meleeAttack: 107
+  throwAttack: 106
 --- !u!61 &819925814
 BoxCollider2D:
   m_ObjectHideFlags: 0

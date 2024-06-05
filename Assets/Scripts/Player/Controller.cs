@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private bool isGrounded = false;
+    [SerializeField] private GameObject hitArea;
 
     [Header("Movement")]
     [SerializeField] private float acceleration;
@@ -14,16 +15,26 @@ public class Controller : MonoBehaviour
     [SerializeField] private int climbingAcceleration;
     [SerializeField] private int maxClimbingSpeed;
     [SerializeField] private int maxClimbingDistance;
-    private bool isClimbing;
-    private float distanceClimbed;
+    [SerializeField] private float climbingCooldown;
+	private bool isClimbing;
+    private float climbingCooldownTimer;
+    private bool canClimb;
+	private float distanceClimbed;
     private Vector3 lastLocation;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce;
     [SerializeField] private float dragDownForce;
-    private float jumpForceMultiplier = 1f;
+    [SerializeField] private float extraJumpTime;
     private bool isJumping = false;
+	private bool isGrounded = false;
+    private float extraJumpTimer;
 
+	[Header("Dash")]
+    [SerializeField] private float dashForce;
+    [SerializeField] private float dashCooldown;
+    private float dashCooldownTimer;
+    private bool canDash = true;
 
     [Header("Keys")]
     [SerializeField] private KeyCode up;
@@ -31,10 +42,11 @@ public class Controller : MonoBehaviour
     [SerializeField] private KeyCode left;
     [SerializeField] private KeyCode right;
     [SerializeField] private KeyCode jump;
+    [SerializeField] private KeyCode dash;
 
     private void Start()
-    { 
-		rb = GetComponent<Rigidbody2D>();
+    {
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
@@ -44,7 +56,8 @@ public class Controller : MonoBehaviour
         HandleMove();
         HandleRotation();
         HandleJump();
-        HandleWallHang();
+        HandleClimb();
+        HandleDash();
     }
 
     private void HandleFriction()
@@ -68,18 +81,22 @@ public class Controller : MonoBehaviour
         {
             movementDirection.y = 1;
         }
-        if (Input.GetKey(left) && !isClimbing)
+        if (Input.GetKey(left))
         {
             movementDirection.x = -1;
-        }
+			isClimbing = false;
+			canClimb = false;
+		}
         if (Input.GetKey(down) && isClimbing)
         {
             movementDirection.y = -1; 
         }
-        if (Input.GetKey(right) && !isClimbing)
+        if (Input.GetKey(right))
         {
-            movementDirection.x = 1; 
-        }
+            movementDirection.x = 1;
+			isClimbing = false;
+			canClimb = false;
+		}
 
         Vector2 accelerationVector = movementDirection * (isClimbing ? climbingAcceleration : acceleration);
         Vector2 newVelocity = rb.velocity + accelerationVector;
@@ -93,41 +110,107 @@ public class Controller : MonoBehaviour
 
 	private void HandleRotation()
     {
-        if (movementDirection.x < 0)
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        }
-        else if (movementDirection.x > 0)
-        {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-        }
-    }
+		if (movementDirection.x < 0)
+		{
+			transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+		}
+		else if (movementDirection.x > 0)
+		{
+			transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+		}
+	}
 
     private void HandleJump()
     {
-        if (Input.GetKey(jump) && (isGrounded || isClimbing))
+        if (Input.GetKey(jump))
         {
-            isJumping = true;
-            if (jumpForceMultiplier < 2f)
+            if (isGrounded || isClimbing && !isJumping)
             {
-                jumpForceMultiplier += Time.fixedDeltaTime;
+				rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+				isJumping = true;
+
+                if (isClimbing)
+                {
+                    isClimbing = false;
+                    canClimb = false;
+                    climbingCooldownTimer = climbingCooldown;
+                }
+
+				extraJumpTimer = extraJumpTime;
             }
-            else
-            {
-                jumpForceMultiplier = 2f;
-            }
-        }
+			if (isJumping)
+			{
+				if (extraJumpTimer > 0)
+				{
+					rb.AddForce(new Vector2(0f, jumpForce * extraJumpTime));
+					extraJumpTimer -= Time.deltaTime;
+				}
+				else
+				{
+					isJumping = false;
+				}
+			}
+		}
         else
         {
-            if (isJumping)
-            {
-                isJumping = false;
-                isClimbing = false;
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce * jumpForceMultiplier);
-                jumpForceMultiplier = 1f;
-            }
-        }
+			isJumping = false;
+		}
     }
+
+    private void HandleClimb()
+    {
+		if (climbingCooldownTimer > 0)
+		{
+			climbingCooldownTimer -= Time.deltaTime;
+		}
+		else
+		{
+			canClimb = true;
+		}
+
+        if (isClimbing)
+        {
+			if (distanceClimbed > maxClimbingDistance)
+			{
+				isClimbing = false;
+				canClimb = false;
+				climbingCooldownTimer = climbingCooldown;
+            }
+            else if (lastLocation != null)
+			{
+                distanceClimbed += Vector2.Distance(transform.position, lastLocation);
+            }
+		}
+
+        lastLocation = transform.position;
+	}
+
+    private void HandleDash()
+    {
+		if (dashCooldownTimer > 0)
+		{
+			dashCooldownTimer -= Time.deltaTime;
+		}
+		else
+		{
+			canDash = true;
+		}
+
+        if (Input.GetKey(dash) && canDash)
+        {
+            Vector2 force = new Vector2(dashForce, 0f);
+
+            if (transform.rotation == Quaternion.Euler(0f, 0f, 0f))
+            {
+                force = -force;   
+            }
+
+            rb.AddRelativeForce(force);
+
+            dashCooldownTimer = dashCooldown;
+            canDash = false;
+		}
+	}
 
     private void HandleGravity()
     {
@@ -141,39 +224,21 @@ public class Controller : MonoBehaviour
         }
     }
 
-	private void HandleWallHang()
-	{
-		if (isClimbing)
-		{
-			if (distanceClimbed < maxClimbingDistance)
-			{
-				distanceClimbed += Vector3.Distance(transform.position, lastLocation);
-			}
-			else
-			{
-				isClimbing = false;
-			}
-
-			lastLocation = transform.position;
-		}
-
-		if (isGrounded)
-		{
-			distanceClimbed = 0f;
-		}
-	}
-
 	private void OnCollisionStay2D(Collision2D collision)
     {
 		Vector3 collisionNormal = collision.contacts[0].normal;
 
-		if (!isClimbing && (collisionNormal.x == 1 || collisionNormal.x == -1))
+		if (!isClimbing && (collisionNormal.x == 1 || collisionNormal.x == -1) && canClimb)
 		{
+            rb.velocity = new Vector3(0f, 0f, 0f);
 			isClimbing = true;
 		}
 
         if (collisionNormal.y == 1)
         {
+            canClimb = true;
+            climbingCooldownTimer = 0;
+            distanceClimbed = 0f;
 			isGrounded = true;
 		}
     }

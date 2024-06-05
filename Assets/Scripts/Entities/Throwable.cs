@@ -4,6 +4,8 @@ public class Throwable : MonoBehaviour
 {
 
 	Rigidbody2D rb;
+	private int damage;
+
 	private void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
@@ -21,8 +23,18 @@ public class Throwable : MonoBehaviour
 		transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
 	}
 
-	private void OnCollisionEnter2D(Collision2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		Destroy(gameObject);
+		if (!(collision.gameObject.tag is "Player" or "Throwable")  )
+		{
+			Debug.Log("test");
+
+			if (collision.gameObject.TryGetComponent<Health>(out Health health))
+			{
+				health.addHealth(-damage);
+			}
+
+			Destroy(gameObject);
+		}
 	}
 }

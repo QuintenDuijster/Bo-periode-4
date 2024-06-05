@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3413095742524651740}
-  - component: {fileID: -2984041529068988621}
   - component: {fileID: 4460025813800121420}
   m_Layer: 0
   m_Name: Spear
@@ -34,18 +33,6 @@ Transform:
   - {fileID: 4091113883136858037}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2984041529068988621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8882911280584087207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8045b788ff02ff2499824f5ad072f50c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &4460025813800121420
 Rigidbody2D:
   serializedVersion: 4

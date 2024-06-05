@@ -14,7 +14,7 @@ namespace BossFight
         private float timeForSpear = 1;
         int i = 0;
         int damage = 1;
-        private bool othaWay;
+        private bool help = true;
 
         public int Damage { get => damage; }
         void Start()
@@ -27,30 +27,24 @@ namespace BossFight
 
         IEnumerator spearTimer()
         {
-
-            Instantiate(spear, spearHoles.transform.GetChild(i));
-            Debug.Log(i);
-            if (i < 4 && othaWay == false)
+            for (i = i; i < spearHoles.transform.childCount; i += help ? 1 : -1)
             {
-                i++;
-                
-                if (i == 4)
+                if (i >= spearHoles.transform.childCount)
                 {
-                    Debug.Log(othaWay);
-                    othaWay = true;
+                    help = false;
+                    StartCoroutine(spearTimer());
                 }
-            } 
-            else
-            {
-                i--;
-                if (i == -1)
+                else if (i <= -1)
                 {
                     Destroy(this);
                 }
-            }
-            yield return new WaitForSeconds(timeForSpear);
 
-            StartCoroutine(spearTimer());
+                GameObject spearI = Instantiate(spear, spearHoles.transform.GetChild(i));
+                Destroy(spearI, 1);
+                yield return new WaitForSeconds(timeForSpear);
+                
+            }
         }
+
     }
 }

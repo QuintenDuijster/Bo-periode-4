@@ -6,6 +6,7 @@ public class Health : MonoBehaviour
 {
 	[SerializeField] private int maxHealth;
 	private int health { get; set; }
+	internal bool dead;
 
 	public void addHealth(int index)
 	{
@@ -25,11 +26,12 @@ public class Health : MonoBehaviour
 		health = maxHealth;
 	}
 
-	private void Update()
+	 void Update()
 	{
-		if (health < 0)
+		if (health < 0 && dead) 
 		{
-
+			Debug.Log("DEAD");
 		}
+		Debug.Log(health);
 	}
 }

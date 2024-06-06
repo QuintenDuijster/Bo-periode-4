@@ -4,6 +4,7 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Inputs inputs;
     [SerializeField] private GameObject hitArea;
 
     [Header("Movement")]
@@ -36,17 +37,10 @@ public class Controller : MonoBehaviour
     private float dashCooldownTimer;
     private bool canDash = true;
 
-    [Header("Keys")]
-    [SerializeField] private KeyCode up;
-    [SerializeField] private KeyCode down;
-    [SerializeField] private KeyCode left;
-    [SerializeField] private KeyCode right;
-    [SerializeField] private KeyCode jump;
-    [SerializeField] private KeyCode dash;
-
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        inputs = GetComponent<Inputs>();
     }
 
     private void FixedUpdate()
@@ -58,15 +52,16 @@ public class Controller : MonoBehaviour
         HandleJump();
         HandleClimb();
         HandleDash();
+        
     }
 
     private void HandleFriction()
     {
-        if ((isGrounded || isClimbing) && !(Input.GetKey(right) || Input.GetKey(left)))
+        if ((isGrounded || isClimbing) && !(Input.GetKey(inputs.right) || Input.GetKey(inputs.left)))
         {
             rb.velocity = new Vector2(rb.velocity.x * 0.9f, rb.velocity.y);
         }
-        if (isClimbing && !(Input.GetKey(up) || Input.GetKey(down)))
+        if (isClimbing && !(Input.GetKey(inputs.up) || Input.GetKey(inputs.down)))
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.9f);
         }
@@ -77,21 +72,21 @@ public class Controller : MonoBehaviour
         movementDirection.x = 0f;
         movementDirection.y = 0f;
 
-        if (Input.GetKey(up) && isClimbing)
+        if (Input.GetKey(inputs.up) && isClimbing)
         {
             movementDirection.y = 1;
         }
-        if (Input.GetKey(left))
+        if (Input.GetKey(inputs.left))
         {
             movementDirection.x = -1;
 			isClimbing = false;
 			canClimb = false;
 		}
-        if (Input.GetKey(down) && isClimbing)
+        if (Input.GetKey(inputs.down) && isClimbing)
         {
             movementDirection.y = -1; 
         }
-        if (Input.GetKey(right))
+        if (Input.GetKey(inputs.right))
         {
             movementDirection.x = 1;
 			isClimbing = false;
@@ -122,7 +117,7 @@ public class Controller : MonoBehaviour
 
     private void HandleJump()
     {
-        if (Input.GetKey(jump))
+        if (Input.GetKey(inputs.jump))
         {
             if (isGrounded || isClimbing && !isJumping)
             {
@@ -196,7 +191,7 @@ public class Controller : MonoBehaviour
 			canDash = true;
 		}
 
-        if (Input.GetKey(dash) && canDash)
+        if (Input.GetKey(inputs.dash) && canDash)
         {
             Vector2 force = new Vector2(dashForce, 0f);
 

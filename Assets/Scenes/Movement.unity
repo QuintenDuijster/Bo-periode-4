@@ -485,9 +485,10 @@ GameObject:
   m_Component:
   - component: {fileID: 819925811}
   - component: {fileID: 819925810}
-  - component: {fileID: 819925809}
   - component: {fileID: 819925812}
   - component: {fileID: 819925813}
+  - component: {fileID: 819925815}
+  - component: {fileID: 819925809}
   - component: {fileID: 819925814}
   m_Layer: 6
   m_Name: Player
@@ -612,14 +613,9 @@ MonoBehaviour:
   climbingCooldown: 0.3
   jumpForce: 8
   dragDownForce: 0.6
+  extraJumpTime: 0
   dashForce: 5000
   dashCooldown: 2
-  up: 119
-  down: 115
-  left: 97
-  right: 100
-  jump: 32
-  dash: 108
 --- !u!114 &819925813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,8 +635,6 @@ MonoBehaviour:
   throwCooldown: 1.5
   throwForce: 900
   ThrowDamage: 3
-  meleeAttack: 107
-  throwAttack: 106
 --- !u!61 &819925814
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -686,6 +680,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 9, y: 14}
   m_EdgeRadius: 0
+--- !u!114 &819925815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819925807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52af5b67016c8f64a820be2be5a0acff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  up: 119
+  down: 115
+  left: 97
+  right: 100
+  jump: 32
+  dash: 108
+  meleeAttack: 106
+  throwAttack: 107
 --- !u!1 &1015116160
 GameObject:
   m_ObjectHideFlags: 0

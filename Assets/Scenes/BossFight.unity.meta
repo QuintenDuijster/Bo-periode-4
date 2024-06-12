@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/BossFight.unity.meta
 guid: ac368d01a88a7c146b40f4d51305fbb3
+========
+guid: 08dac82e067f3c84bada57dfa643c646
+>>>>>>>> origin/Platforming:Assets/Scenes/EarthPlatformLevel1.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/FileHandler.cs.meta
+guid: f9b8d2326d86e4c439adc404220eadd9
+========
+guid: ab73e5983b698454f8a00fd8c8cd037c
+>>>>>>>> UI:Assets/Scripts/UI/Inputs.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

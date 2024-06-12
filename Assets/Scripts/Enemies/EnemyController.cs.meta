@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/Player/Inputs.cs.meta
-guid: 52af5b67016c8f64a820be2be5a0acff
+<<<<<<<< HEAD:Assets/Scripts/Player/Stats.cs.meta
+guid: 6a2944587a0bec640af04f638a6bd5e6
 ========
-guid: 98a61eec54d72d748b380d527b2b4f7f
->>>>>>>> origin/enemyController:Assets/Scripts/Enemies/CollisionChecker.cs.meta
+guid: f64acf591ffcefd4bbb6e021d498d48c
+>>>>>>>> origin/enemyController:Assets/Scripts/Enemies/EnemyController.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 //let op action var is nog niet goed afgesteld
@@ -43,18 +40,18 @@ namespace BossFight
             health.addHealth(bossHealth);
         }
 
-        //void bossTimer()
-        //{
-        //    if (action)
-        //    {
-               
-        //        action = false;
-        //        if (!action)
-        //        {
-        //            StartCoroutine("timer");
-        //        }
-        //    }
-        //}
+        void bossTimer()
+        {
+            if (action)
+            {
+
+                action = false;
+                if (!action)
+                {
+                    StartCoroutine("timer");
+                }
+            }
+        }
 
         IEnumerator timer()
         {
@@ -64,13 +61,13 @@ namespace BossFight
             yield return new WaitForSeconds(difficultyTime);
 
 
-            attack = 2;/*random.Next(amountOfAttacks);*/
+            attack = random.Next(amountOfAttacks);
             action = true;
 
             if(!health.Dead)
             {
                 actions();
-                //StartCoroutine("timer");
+                StartCoroutine("timer");
 
             } else
             {

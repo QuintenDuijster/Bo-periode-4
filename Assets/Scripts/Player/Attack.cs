@@ -20,17 +20,11 @@ public class Attack : MonoBehaviour
 	private float throwCooldownTimer;
 	private bool canThrow = true;
 
-	private void Start()
-	{
-		inputs = GetComponent<Inputs>();
-	}
-
 	private void Update()
 	{
 		HandleMelee();
 		HandleThrow();
 	}
-
 
 	private void HandleMelee()
 	{

@@ -4,7 +4,7 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private Inputs inputs;
+    [SerializeField] private Inputs inputs;
     [SerializeField] private GameObject hitArea;
 
     [Header("Movement")]
@@ -39,6 +39,7 @@ public class Controller : MonoBehaviour
 
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody2D>();
         inputs = GetComponent<Inputs>();
     }

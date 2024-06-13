@@ -9,6 +9,7 @@ public class death : MonoBehaviour
 		if (collision.gameObject.tag == "Player")
 		{
 			SceneManager.LoadScene(3);
+			Destroy(collision.gameObject);
 		}
 	}
 }

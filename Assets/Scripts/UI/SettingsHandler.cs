@@ -1,9 +1,11 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class SettingsHandler : MonoBehaviour
 {
 	[SerializeField] private Inputs inputs;
-	[SerializeField] private  TMPro.TMP_Text[] labels;
+	[SerializeField] private TMP_Text[] labels;
 
 	private void Start()
 	{
@@ -17,34 +19,77 @@ public class SettingsHandler : MonoBehaviour
 		labels[7].text = inputs.throwAttack.ToString();
 	}
 
-	public void changeKey(TMPro.TMP_Text label)
+	public void ChangeKey(TMP_Text label)
+	{
+		StartCoroutine(ChangeKeyCoroutine(label));
+	}
+
+	private IEnumerator ChangeKeyCoroutine(TMP_Text label)
 	{
 		bool getKey = true;
 		KeyCode key;
 
 		while (getKey)
 		{
-			label.text = "...";
-			if (!Input.GetMouseButton(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2) && !Input.anyKeyDown)
+			if (label.text.Length < 3)
 			{
-			    key = GetCurrentKeyDown();
-				if (key != KeyCode.None)
-				{
-					getKey = false;
-
-					label.text = key.ToString();
-				}
+				label.text += ".";
 			}
+			else
+			{
+				label.text = "";
+			}
+
+			key = GetCurrentKeyDown();
+			if (key != KeyCode.None)
+			{
+				getKey = false;
+				label.text = key.ToString();
+				ChangeKeyCode(label.name, key);
+			}
+
+			yield return null; 
+		}
+	}
+
+	private void ChangeKeyCode(string keyName, KeyCode keyCode)
+	{
+		switch (keyName)
+		{
+			case "LeftKey": 
+				inputs.left = keyCode;
+				break;
+			case "RightKey":
+				inputs.right = keyCode;
+				break;
+			case "UpKey":
+				inputs.up = keyCode;
+				break;
+			case "DownKey":
+				inputs.down = keyCode;
+				break;
+			case "JumpKey":
+				inputs.jump = keyCode;
+				break;
+			case "DashKey":
+				inputs.down = keyCode;
+				break;
+			case "MeleeKey":
+				inputs.meleeAttack = keyCode;
+				break;
+			case "ThrowKey":
+				inputs.throwAttack = keyCode;
+				break;
 		}
 	}
 
 	private KeyCode GetCurrentKeyDown()
 	{
-		foreach (KeyCode kcode in System.Enum.GetValues(typeof(KeyCode)))
+		foreach (KeyCode keyCode in System.Enum.GetValues(typeof(KeyCode)))
 		{
-			if (Input.GetKeyDown(kcode))
+			if (Input.GetKeyDown(keyCode))
 			{
-				return kcode;
+				return keyCode;
 			}
 		}
 		return KeyCode.None;

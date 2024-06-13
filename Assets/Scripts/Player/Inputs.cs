@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class Inputs : MonoBehaviour
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Inputs")]
+public class Inputs : ScriptableObject
 {
 	[Header("Movement")]
 	public KeyCode up = KeyCode.W;

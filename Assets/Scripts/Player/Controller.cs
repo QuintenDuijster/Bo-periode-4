@@ -4,7 +4,6 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
-    [SerializeField] private Inputs inputs;
     [SerializeField] private GameObject hitArea;
 
     [Header("Movement")]
@@ -41,7 +40,6 @@ public class Controller : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody2D>();
-        inputs = GetComponent<Inputs>();
     }
 
     private void FixedUpdate()
@@ -58,11 +56,11 @@ public class Controller : MonoBehaviour
 
     private void HandleFriction()
     {
-        if ((isGrounded || isClimbing) && !(Input.GetKey(inputs.right) || Input.GetKey(inputs.left)))
+        if ((isGrounded || isClimbing) && !(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
         {
             rb.velocity = new Vector2(rb.velocity.x * 0.9f, rb.velocity.y);
         }
-        if (isClimbing && !(Input.GetKey(inputs.up) || Input.GetKey(inputs.down)))
+        if (isClimbing && !(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)))
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.9f);
         }
@@ -73,21 +71,21 @@ public class Controller : MonoBehaviour
         movementDirection.x = 0f;
         movementDirection.y = 0f;
 
-        if (Input.GetKey(inputs.up) && isClimbing)
+        if (Input.GetKey(KeyCode.W) && isClimbing)
         {
             movementDirection.y = 1;
         }
-        if (Input.GetKey(inputs.left))
+        if (Input.GetKey(KeyCode.A))
         {
             movementDirection.x = -1;
 			isClimbing = false;
 			canClimb = false;
 		}
-        if (Input.GetKey(inputs.down) && isClimbing)
+        if (Input.GetKey(KeyCode.S) && isClimbing)
         {
             movementDirection.y = -1; 
         }
-        if (Input.GetKey(inputs.right))
+        if (Input.GetKey(KeyCode.D))
         {
             movementDirection.x = 1;
 			isClimbing = false;
@@ -118,7 +116,7 @@ public class Controller : MonoBehaviour
 
     private void HandleJump()
     {
-        if (Input.GetKey(inputs.jump))
+        if (Input.GetKey(KeyCode.Space))
         {
             if (isGrounded || isClimbing && !isJumping)
             {
@@ -192,7 +190,7 @@ public class Controller : MonoBehaviour
 			canDash = true;
 		}
 
-        if (Input.GetKey(inputs.dash) && canDash)
+        if (Input.GetKey(KeyCode.J) && canDash)
         {
             Vector2 force = new Vector2(dashForce, 0f);
 

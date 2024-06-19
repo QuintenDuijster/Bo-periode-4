@@ -9,8 +9,6 @@ public class nextLevel : MonoBehaviour
 	{
 		if (collision.gameObject.name == "Player")
 		{
-			Debug.Log("Player collided with NextScene.");
-
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 		}
 	}

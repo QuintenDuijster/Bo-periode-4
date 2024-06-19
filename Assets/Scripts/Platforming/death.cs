@@ -8,7 +8,7 @@ public class death : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
-			SceneManager.LoadScene(3);
+			SceneManager.LoadScene(2);
 			Destroy(collision.gameObject);
 		}
 	}

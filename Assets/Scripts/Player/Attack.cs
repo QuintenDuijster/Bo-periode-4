@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-	private Inputs inputs;
-
 	[Header("Melee")]
 	[SerializeField] private GameObject hitArea;
 	[SerializeField] private float meleeCooldown;
@@ -39,7 +37,7 @@ public class Attack : MonoBehaviour
 		}
 
 
-		if (Input.GetKey(inputs.meleeAttack) && canAttack && throwCooldownTimer <= 0)
+		if (Input.GetKey(KeyCode.K) && canAttack && throwCooldownTimer <= 0)
 		{
 			hitArea.SetActive(true);
 			meleeCooldownTimer = meleeCooldown;
@@ -57,7 +55,7 @@ public class Attack : MonoBehaviour
 			canThrow = true;
 		}
 
-		if (Input.GetKey(inputs.throwAttack) && canThrow && meleeCooldownTimer <= 0)
+		if (Input.GetKey(KeyCode.L) && canThrow && meleeCooldownTimer <= 0)
 		{
 			throwCooldownTimer = throwCooldown;
 			canThrow = false;

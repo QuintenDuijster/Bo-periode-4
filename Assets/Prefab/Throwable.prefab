@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 764172921169535069}
   - component: {fileID: 1749869623284078564}
   - component: {fileID: 3172406580920428829}
-  - component: {fileID: 4781191886345489709}
   - component: {fileID: 7140691236575690459}
+  - component: {fileID: 6621506453642957478}
   m_Layer: 0
   m_Name: Throwable
   m_TagString: Untagged
@@ -114,7 +114,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &4781191886345489709
+--- !u!114 &7140691236575690459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6240550344276336253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69531ec17f8216468f8fba90595d76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &6621506453642957478
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +155,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -159,15 +171,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7140691236575690459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6240550344276336253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e69531ec17f8216468f8fba90595d76d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -30,8 +30,8 @@ public class Health : MonoBehaviour
 	{
 		if (health < 0 && dead) 
 		{
-			Debug.Log("DEAD");
+			//Debug.Log("DEAD");
 		}
-		Debug.Log(health);
+		//Debug.Log(health);
 	}
 }

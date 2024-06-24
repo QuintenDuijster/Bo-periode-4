@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -25,9 +26,10 @@ public class Health : MonoBehaviour
 
 	private void Update()
 	{
-		if (health < 0)
+		if (health < 1)
 		{
-			
+			Destroy(gameObject);
+			SceneManager.LoadScene(2);
 		}
 	}
 }

@@ -17,8 +17,6 @@ namespace BossFight
         int damage = 1;
         private bool othaWay;
 
-
-        public int Damage { get => damage; }
         void Start()
         {
             spearHoles = GameObject.Find("GroundSpears");
@@ -56,5 +54,13 @@ namespace BossFight
             StartCoroutine(spearTimer());
         }
 
-    }
+		private void OnTriggerEnter2D(Collider2D collision)
+		{
+			if (collision.gameObject.tag == "Player")
+			{
+				Health health = collision.gameObject.GetComponent<Health>();
+				health.addHealth(-damage);
+			}
+		}
+	}
 }

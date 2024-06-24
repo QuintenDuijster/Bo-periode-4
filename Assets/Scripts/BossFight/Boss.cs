@@ -31,11 +31,32 @@ namespace BossFight
             screenBorderRight = GameObject.Find("ScreenBorderRight");
             screenBorderLeft = GameObject.Find("ScreenBorderLeft"); 
 
-            if (player1 == null || fist == null || screenBorderLeft == null || screenBorderRight == null || beam == null)
+            if (player1 == null)
             {
-                Debug.Log("Loading in Boss.cs went wrong");
+                Debug.Log("player = null");
             }
-            StartCoroutine("timer");
+
+            if (fist == null)
+			{
+				Debug.Log("fist = null");
+			}
+
+			if (screenBorderLeft == null)
+			{
+				Debug.Log("screenBorderLeft = null");
+			}
+
+			if (screenBorderRight == null)
+			{
+				Debug.Log("screenBorderRight = null");
+			}
+
+			if (beam == null)
+			{
+				Debug.Log("beam = null");
+			}
+
+			StartCoroutine("timer");
 
             health.addHealth(bossHealth);
         }
@@ -62,6 +83,7 @@ namespace BossFight
 
 
             attack = random.Next(amountOfAttacks);
+            Debug.Log(attack);
             action = true;
 
             if(!health.Dead)

@@ -1,4 +1,5 @@
 using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -14,6 +15,7 @@ public class SoldierController : EnemyController
 
     [Header("Combat")]
     [SerializeField] int damage;
+    
     [SerializeField] float reach;
 
     private Animator animator;

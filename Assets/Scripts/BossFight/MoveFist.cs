@@ -10,7 +10,7 @@ namespace BossFight
 {
     public class MoveFist : MonoBehaviour
     {
-        float speed = 0.01f;
+        float speed = 0.1f;
         int damage = 1;
 
         public int Damage { get => damage; }

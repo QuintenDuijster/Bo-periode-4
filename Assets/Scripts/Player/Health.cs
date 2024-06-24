@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,9 +27,11 @@ public class Health : MonoBehaviour
 
 	private void Update()
 	{
-		if (health < 1)
+		if (health <= 0)
 		{
-			Destroy(gameObject);
+			Debug.Log(health);
+			Debug.Log("h1h1");
+			DestroyImmediate(gameObject);
 			SceneManager.LoadScene(2);
 		}
 	}

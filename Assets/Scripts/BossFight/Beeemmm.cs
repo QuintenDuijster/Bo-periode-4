@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class Beeemmm : MonoBehaviour
 {
-    int damage = 0;
+    int damage = 1;
     int direction;
     Vector3 velocity = Vector3.zero; 
 
     void Start()
     {
-        Invoke("SetDamage" , 1);
         Destroy(gameObject, 4);
     }
 

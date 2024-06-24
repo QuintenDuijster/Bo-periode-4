@@ -1,9 +1,12 @@
 
+using TMPro;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Health health;
+    private TMP_Text text;
     [SerializeField] private GameObject hitArea;
 
     [Header("Movement")]
@@ -40,11 +43,17 @@ public class Controller : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<Health>();
     }
 
     private void FixedUpdate()
     {
-        HandleGravity();
+		GameObject textBox = GameObject.FindGameObjectWithTag("HpDisplay");
+		text = textBox.GetComponent<TMP_Text>();
+
+        text.text = health.health.ToString();
+
+		HandleGravity();
         HandleFriction();
         HandleMove();
         HandleRotation();

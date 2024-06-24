@@ -48,11 +48,10 @@ public class Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-		GameObject textBox = GameObject.FindGameObjectWithTag("HpDisplay");
-		text = textBox.GetComponent<TMP_Text>();
-
-        text.text = health.health.ToString();
-
+		// GameObject textBox = GameObject.FindGameObjectWithTag("HpDisplay");
+		// text = textBox.GetComponent<TMP_Text>();
+  //
+  //       text.text = health.health.ToString();
 		HandleGravity();
         HandleFriction();
         HandleMove();

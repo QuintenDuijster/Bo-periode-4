@@ -23,6 +23,6 @@ public class Beeemmm : MonoBehaviour
 
     void Update()
     {
-        transform.position = Vector3.SmoothDamp(gameObject.transform.position, new Vector3(Boss.player1.transform.position.x, 0), ref velocity, 0.3f, 7, Time.deltaTime);
+        transform.position = Vector3.SmoothDamp(gameObject.transform.position, new Vector3(Boss.player1.transform.position.x, Boss.floor.transform.position.y), ref velocity, 0.1f, 34, Time.deltaTime);
     }
 }

@@ -12,11 +12,10 @@ namespace BossFight
         public static System.Random random = new();
         bool action = true;
         float difficultyTime = 4f;
-        private int attack, amountOfAttacks = 2 , aOffset = 6;
+        private int attack, amountOfAttacks = 4;
         private GameObject fist, beam;
-        public static GameObject player1;    
+        public static GameObject player1, floor;    
         private GameObject screenBorderRight;
-        private GameObject floor;
         Health health;
         private int bossHealth = 9;
 
@@ -58,8 +57,8 @@ namespace BossFight
             action = false;
 
 
-            yield return new WaitForSeconds(difficultyTime);
 
+            yield return new WaitForSeconds(difficultyTime);
 
             attack = random.Next(amountOfAttacks);
             action = true;
@@ -83,24 +82,28 @@ namespace BossFight
             
             if (action && attack == 0)
             {
-                Instantiate(fist, screenBorderLeft.transform.position + Vector3.left * aOffset, Quaternion.Euler(0, 0, -90));
-                Instantiate(fist, screenBorderRight.transform.position + Vector3.right * aOffset, Quaternion.Euler(0, 0, 90));
+                Instantiate(fist, new Vector3(screenBorderLeft.transform.position.x,  player1.transform.position.y) + Vector3.left, Quaternion.Euler(0, 0, -90));
+                Instantiate(fist, new Vector3(screenBorderRight.transform.position.x, player1.transform.position.y) + Vector3.right, Quaternion.Euler(0, 0, 90));
+                difficultyTime = 4.5f;
             }
 
             if(action && attack == 1)
             {
-                Instantiate(fist, floor.transform.position + Vector3.down * aOffset, Quaternion.Euler(0, 0, 0));
-                Instantiate(fist, skybox.transform.position + Vector3.up * aOffset, Quaternion.Euler(0, 0, 180));
+                Instantiate(fist, new Vector3(player1.transform.position.x, floor.transform.position.y, 0)  + Vector3.down, Quaternion.Euler(0, 0, 0));
+                Instantiate(fist, new Vector3(player1.transform.position.x, skybox.transform.position.y, 0) + Vector3.up, Quaternion.Euler(0, 0, 180));
+                difficultyTime = 4.5f;
             }
 
             if (action && attack == 2)
             {
                 gameObject.AddComponent<GroundSpears>();
+                difficultyTime = 5.5f;
             }
 
             if (action && attack == 3)
             {
-                Instantiate(beam, new Vector3(player1.transform.position.x, 0.5f, 0), Quaternion.Euler(0, 0, 0));
+                Instantiate(beam, new Vector3(player1.transform.position.x, floor.transform.position.y, 0), Quaternion.Euler(0, 0, 0));
+                difficultyTime = 5f;
             }
 
             action = false;

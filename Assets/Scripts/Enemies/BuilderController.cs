@@ -79,7 +79,7 @@ public class BuilderController : MonoBehaviour
         }
         else
         {
-            ResetAllTriggers( animator);
+            //ResetAllTriggers( animator);
             animator.SetTrigger("Idle");
             throwCooldownTimer -= Time.deltaTime;
         }

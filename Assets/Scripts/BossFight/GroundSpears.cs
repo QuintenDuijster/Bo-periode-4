@@ -9,7 +9,7 @@ namespace BossFight
     {
         [SerializeField]
         GameObject spearHoles, spear;
-        private float timeForSpear = 1;
+        private float timeForSpear = 0.5f;
         int i = 0;
         private bool othaWay;
 
@@ -27,7 +27,7 @@ namespace BossFight
         {
 
             GameObject spearI = Instantiate(spear, spearHoles.transform.GetChild(i));
-            Destroy(spearI, 1);
+            Destroy(spearI, 0.5f);
             Debug.Log(i);
             if (i < 4 && othaWay == false)
             {

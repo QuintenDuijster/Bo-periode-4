@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 //let op action var is nog niet goed afgesteld
@@ -15,7 +12,7 @@ namespace BossFight
         public static System.Random random = new();
         bool action = true;
         float difficultyTime = 4f;
-        private int attack, amountOfAttacks = 2;
+        private int attack, amountOfAttacks = 2 , aOffset = 6;
         private GameObject fist, beam;
         public static GameObject player1;    
         private GameObject screenBorderRight;
@@ -43,18 +40,18 @@ namespace BossFight
             health.addHealth(bossHealth);
         }
 
-        //void bossTimer()
-        //{
-        //    if (action)
-        //    {
-               
-        //        action = false;
-        //        if (!action)
-        //        {
-        //            StartCoroutine("timer");
-        //        }
-        //    }
-        //}
+        void bossTimer()
+        {
+            if (action)
+            {
+
+                action = false;
+                if (!action)
+                {
+                    StartCoroutine("timer");
+                }
+            }
+        }
 
         IEnumerator timer()
         {
@@ -64,13 +61,13 @@ namespace BossFight
             yield return new WaitForSeconds(difficultyTime);
 
 
-            attack = 2;/*random.Next(amountOfAttacks);*/
+            attack = random.Next(amountOfAttacks);
             action = true;
 
             if(!health.Dead)
             {
                 actions();
-                //StartCoroutine("timer");
+                StartCoroutine("timer");
 
             } else
             {
@@ -86,14 +83,14 @@ namespace BossFight
             
             if (action && attack == 0)
             {
-                Instantiate(fist, screenBorderLeft.transform.position + Vector3.left, Quaternion.Euler(0, 0, -90));
-                Instantiate(fist, screenBorderRight.transform.position + Vector3.right, Quaternion.Euler(0, 0, 90));
+                Instantiate(fist, screenBorderLeft.transform.position + Vector3.left * aOffset, Quaternion.Euler(0, 0, -90));
+                Instantiate(fist, screenBorderRight.transform.position + Vector3.right * aOffset, Quaternion.Euler(0, 0, 90));
             }
 
             if(action && attack == 1)
             {
-                Instantiate(fist, floor.transform.position + Vector3.down, Quaternion.Euler(0, 0, 0));
-                Instantiate(fist, skybox.transform.position + Vector3.up, Quaternion.Euler(0, 0, 180));
+                Instantiate(fist, floor.transform.position + Vector3.down * aOffset, Quaternion.Euler(0, 0, 0));
+                Instantiate(fist, skybox.transform.position + Vector3.up * aOffset, Quaternion.Euler(0, 0, 180));
             }
 
             if (action && attack == 2)

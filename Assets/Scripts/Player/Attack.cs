@@ -1,86 +1,76 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-
-	[Header("MeleeAttack")]
+	[Header("Melee")]
 	[SerializeField] private GameObject hitArea;
-	[SerializeField] private int meleeCooldown;
+	[SerializeField] private float meleeCooldown;
+	[SerializeField] private int meleeDamage;
 	private float meleeCooldownTimer;
-	private bool canMelee;
-	private bool isAttacking;
+	private bool canAttack = true;
 
-	[Header("ThrowAttack")]
-	[SerializeField] private GameObject throwable;
-	[SerializeField] private int throwableSpeed;
-	[SerializeField] private int throwCooldown;
+	[Header("Throw")]
+	[SerializeField] private GameObject Throwable;
+	[SerializeField] private float throwCooldown;
+	[SerializeField] private float throwForce;
+	[SerializeField] private int ThrowDamage;
 	private float throwCooldownTimer;
-	private bool canThrow;
+	private bool canThrow = true;
 
-	void Update()
+	private void Update()
 	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			HandleMeleeAttack();
-		}
+		HandleMelee();
+		HandleThrow();
+	}
 
-		if (Input.GetMouseButtonDown(1))
+	private void HandleMelee()
+	{
+		if (meleeCooldownTimer > 0)
 		{
-			HandleThrowAttack();
-		}
-
-		if (meleeCooldownTimer < meleeCooldown)
-		{
-			meleeCooldownTimer += Time.deltaTime;
+			meleeCooldownTimer -= Time.deltaTime;
 		}
 		else
 		{
-			canMelee = true;
+			hitArea.SetActive(false);
+			canAttack = true;
 		}
 
-		if (throwCooldownTimer < throwCooldown)
+
+		if (Input.GetKey(KeyCode.K) && canAttack && throwCooldownTimer <= 0)
 		{
-			throwCooldownTimer += Time.deltaTime;
+			hitArea.SetActive(true);
+			meleeCooldownTimer = meleeCooldown;
+		}
+	}
+
+	private void HandleThrow()
+	{
+		if (throwCooldownTimer > 0)
+		{
+			throwCooldownTimer -= Time.deltaTime;
 		}
 		else
 		{
 			canThrow = true;
 		}
-	}
 
-	private void HandleMeleeAttack()
-	{
-		if (canMelee)
+		if (Input.GetKey(KeyCode.L) && canThrow && meleeCooldownTimer <= 0)
 		{
-			canMelee = false;
+			throwCooldownTimer = throwCooldown;
+			canThrow = false;
+			GameObject newThrowable;
+			newThrowable = Instantiate(Throwable, transform.position, transform.rotation);
+			Rigidbody2D rb = newThrowable.GetComponent<Rigidbody2D>();
 
+			Vector3 force = new Vector3(throwForce, 0, 0);
+
+			if (newThrowable.transform.rotation.y == 0)
+			{
+				force = -force;
+			}
+
+			rb.AddForce(force);
 		}
-	}
-
-	private void HandleThrowAttack()
-	{
-		GameObject newThrowable = Instantiate(throwable);
-		Rigidbody2D newThrowable_Rb = newThrowable.GetComponent<Rigidbody2D>();
-		float verticalVelocity;
-		Vector3 direction;
-
-		if (transform.rotation.y == 0)
-		{
-			direction = new Vector3(1, 0, 0);
-
-			verticalVelocity = -throwableSpeed;
-		}
-		else
-		{
-			direction = new Vector3(-1, 0, 0);
-
-			verticalVelocity = throwableSpeed;
-		}
-
-		newThrowable.transform.position = transform.position - direction;
-
-
-		newThrowable_Rb.velocity = new Vector2(verticalVelocity, 0.0f);
 	}
 }

@@ -26,7 +26,10 @@ namespace BossFight
         void Start()
         {
             a = GetComponent<Animator>();
+
             health = gameObject.AddComponent<Health>();
+            health.maxHealth = bossHealth;
+
             floor = GameObject.Find("GroundMesh");
             skybox = GameObject.Find("SkyBox");
             fist = Resources.Load("Prefabs/BossFight/Fist") as GameObject;
@@ -39,9 +42,8 @@ namespace BossFight
             {
                 Debug.Log("Loading in Boss.cs went wrong");
             }
-            StartCoroutine("timer");
+            StartCoroutine(timer());
 
-            health.addHealth(bossHealth);
         }
 
         void bossTimer()
@@ -60,9 +62,9 @@ namespace BossFight
         IEnumerator timer()
         {
             action = false;
-            attack = random.Next(attackTypes.Count);
+            attack = random.Next(attackTypes.Count - 1);
 
-            for(int i = 0; i < attackTypes.Count; i++)
+            for(int i = 0; i < attackTypes.Count - 1; i++)
             {
                 a.ResetTrigger(attackTypes[i]);
             }

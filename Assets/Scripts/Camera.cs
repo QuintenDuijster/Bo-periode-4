@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    Camera camera;
+    Camera cam;
     GameObject player = BossFight.Boss.player1;
     Vector3 reft = Vector3.zero;
     void Start()
     {
-        camera = Camera.main;
+        cam = Camera.main;
     }
 
     void Update()

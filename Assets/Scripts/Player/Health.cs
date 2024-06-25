@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
-	[SerializeField] private int maxHealth;
+	[SerializeField] public int maxHealth;
 	public int health { get; set; }
 	public bool Dead;
 	HealthBar healthBar;

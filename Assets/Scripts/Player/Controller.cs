@@ -1,12 +1,9 @@
-
-using UnityEngine.UI;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Health health;
-    private HealthBar healtBar;
     [SerializeField] private GameObject hitArea;
 
     [Header("Movement")]
@@ -48,9 +45,9 @@ public class Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-		 GameObject hpObject = GameObject.FindGameObjectWithTag("HpDisplay");
-		 hpObject.GetComponent<HealthBar>().SetHealth(health.health);
-		 hpObject.GetComponent<HealthBar>().SetMaxHealth(health.health);
+		 // GameObject hpObject = GameObject.FindGameObjectWithTag("HpDisplay");
+		 // hpObject.GetComponent<HealthBar>().SetHealth(health.health);
+		 // hpObject.GetComponent<HealthBar>().SetMaxHealth(health.health);
 
   //       text.text = health.health.ToString();
 		HandleGravity();

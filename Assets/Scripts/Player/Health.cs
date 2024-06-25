@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
 	[SerializeField] private int maxHealth;
 	public int health { get; set; }
 	public bool Dead;
-
+	public HealthBar healthBar;
 
 	public void addHealth(int index)
 	{
@@ -15,16 +15,19 @@ public class Health : MonoBehaviour
 		if (maxHealth < (newHealth + index))
 		{
 			health = maxHealth;
+			healthBar.SetHealth(health);
 		}
 		else
 		{
 			health = health + index;
+			healthBar.SetHealth(health);
 		}
 	}
 
 	private void Start()
 	{
 		health = maxHealth;
+		healthBar.SetMaxHealth(health);
 	}
 
 	private void Update()

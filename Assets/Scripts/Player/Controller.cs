@@ -224,13 +224,13 @@ public class Controller : MonoBehaviour
     {
 		Vector3 collisionNormal = collision.contacts[0].normal;
 
-		if (!isClimbing && (collisionNormal.x == 1 || collisionNormal.x == -1) && canClimb)
+		if (!isClimbing && (Mathf.Approximately(collisionNormal.x, 1) || Mathf.Approximately(collisionNormal.x, -1)) && canClimb)
 		{
             rb.velocity = new Vector3(0f, 0f, 0f);
 			isClimbing = true;
 		}
 
-        if (collisionNormal.y == 1)
+        if (Mathf.Approximately(collisionNormal.y, 1))
         {
             canClimb = true;
             climbingCooldownTimer = 0;

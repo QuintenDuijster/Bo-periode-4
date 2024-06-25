@@ -13,8 +13,6 @@ namespace BossFight
         float speed = 0.1f;
         int damage = 1;
 
-        public int Damage { get => damage; }
-
         private void Start()
         {
             Destroy(gameObject, 4);
@@ -24,5 +22,14 @@ namespace BossFight
         {
             gameObject.transform.Translate(Vector2.up * speed, Space.Self);
         }
-    }
+
+		private void OnTriggerEnter2D(Collider2D collision)
+		{
+            if (collision.gameObject.tag == "Player")
+            {
+                Health health = collision.gameObject.GetComponent<Health>();
+                health.addHealth(-damage);
+            }
+		}
+	}
 }

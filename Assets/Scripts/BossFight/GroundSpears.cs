@@ -1,5 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Transactions;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 
@@ -9,12 +12,11 @@ namespace BossFight
     {
         [SerializeField]
         GameObject spearHoles, spear;
-        private float timeForSpear = 0.5f;
+        private float timeForSpear = 1;
         int i = 0;
+        int damage = 1;
         private bool othaWay;
 
-
-        
         void Start()
         {
             spearHoles = GameObject.Find("GroundSpears");
@@ -27,7 +29,7 @@ namespace BossFight
         {
 
             GameObject spearI = Instantiate(spear, spearHoles.transform.GetChild(i));
-            Destroy(spearI, 0.5f);
+            Destroy(spearI, 1);
             Debug.Log(i);
             if (i < 4 && othaWay == false)
             {
@@ -52,5 +54,13 @@ namespace BossFight
             StartCoroutine(spearTimer());
         }
 
-    }
+		private void OnTriggerEnter2D(Collider2D collision)
+		{
+			if (collision.gameObject.tag == "Player")
+			{
+				Health health = collision.gameObject.GetComponent<Health>();
+				health.addHealth(-damage);
+			}
+		}
+	}
 }

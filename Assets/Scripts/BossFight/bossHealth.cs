@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class bossHealth : MonoBehaviour
 {
-	[SerializeField] private int maxHealth;
+	public int maxHealth;
 	public int health { get; set; }
 	public bool Dead;
+
 	public void addHealth(int index)
 	{
 		int newHealth = health;

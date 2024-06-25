@@ -1,4 +1,3 @@
-
 using TMPro;
 using UnityEngine;
 
@@ -7,9 +6,8 @@ public class Controller : MonoBehaviour
     private Rigidbody2D rb;
     private Health health;
     private TMP_Text text;
-    [SerializeField] private GameObject hitArea;
 
-    [Header("Movement")]
+	[Header("Movement")]
     [SerializeField] private float acceleration;
     [SerializeField] private int maxSpeed;
     private Vector2 movementDirection = new Vector2();
@@ -60,7 +58,7 @@ public class Controller : MonoBehaviour
         HandleJump();
         HandleClimb();
         HandleDash();
-        
+        HandleAnimation();
     }
 
     private void HandleFriction()
@@ -115,7 +113,7 @@ public class Controller : MonoBehaviour
     {
 		if (movementDirection.x < 0)
 		{
-			transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+			transform.rotation = Quaternion.identity;
 		}
 		else if (movementDirection.x > 0)
 		{
@@ -251,4 +249,15 @@ public class Controller : MonoBehaviour
         isClimbing = false;
 		isGrounded = false;
     }
+
+    private void HandleAnimation()
+    {
+        ResetTriggers();
+
+    }
+
+	private void ResetTriggers()
+	{
+	
+	}
 }

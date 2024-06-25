@@ -144,7 +144,7 @@ public class SoldierController : MonoBehaviour
 
         if (newVelocity.x < 0)
         {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             facingRight = false;
         }
         else

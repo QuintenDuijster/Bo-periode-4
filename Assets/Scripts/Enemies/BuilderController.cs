@@ -141,9 +141,11 @@ public class BuilderController : MonoBehaviour
         if (isGrounded)
         {
             if (MathF.Abs(newVelocity.x) > maxSpeed) newVelocity.x *= decelerationFactor;
-            if (MathF.Abs(newVelocity.y) > maxSpeed) newVelocity.y *= decelerationFactor;
+            //if (MathF.Abs(newVelocity.y) > maxSpeed) newVelocity.y *= decelerationFactor;
+            newVelocity.y = -MathF.Abs(newVelocity.y);
         }
         else newVelocity.x *= .1f;
+   
 
         rb.velocity = newVelocity;
 

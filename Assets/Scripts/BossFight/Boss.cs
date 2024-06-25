@@ -44,19 +44,6 @@ namespace BossFight
             health.addHealth(bossHealth);
         }
 
-        void bossTimer()
-        {
-            if (action)
-            {
-
-                action = false;
-                if (!action)
-                {
-                    StartCoroutine("timer");
-                }
-            }
-        }
-
         IEnumerator timer()
         {
             action = false;

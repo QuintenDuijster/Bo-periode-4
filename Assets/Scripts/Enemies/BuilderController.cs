@@ -34,7 +34,7 @@ public class BuilderController : MonoBehaviour
     [SerializeField]public ContactFilter2D ContactFilter;
     internal Collider2D groundEdgeDetection;
     private GameObject groundChecker;
-    public bool isGrounded => groundEdgeDetection.IsTouching(ContactFilter);
+    public bool isGrounded;
 
     private float throwCooldownTimer;
 
@@ -69,7 +69,7 @@ public class BuilderController : MonoBehaviour
         }
 
 
-
+        isGrounded = groundEdgeDetection.IsTouching(ContactFilter);
 
 
         if (transform.position.x < playerPos.x)

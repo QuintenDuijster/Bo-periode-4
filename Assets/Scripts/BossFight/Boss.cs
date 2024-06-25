@@ -46,19 +46,6 @@ namespace BossFight
 
         }
 
-        void bossTimer()
-        {
-            if (action)
-            {
-
-                action = false;
-                if (!action)
-                {
-                    StartCoroutine("timer");
-                }
-            }
-        }
-
         IEnumerator timer()
         {
             action = false;

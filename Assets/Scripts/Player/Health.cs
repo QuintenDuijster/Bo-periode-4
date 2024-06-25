@@ -26,9 +26,8 @@ public class Health : MonoBehaviour
 	private void Start()
 	{
 		health = maxHealth;
-		Debug.Log(health);
-		Debug.Log(healthBar);
-		healthBar.SetMaxHealth(maxHealth);
+		healthBar = GameObject.FindGameObjectWithTag("HpDisplay").GetComponent<HealthBar>();
+		healthBar.SetMaxHealth(health);
 	}
 
 	private void Update()

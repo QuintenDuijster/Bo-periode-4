@@ -2528,7 +2528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccdef2feaa84cf7468ec1625965cbaa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1319130919}
+  slider: {fileID: 1319130919}
   gradient:
     serializedVersion: 2
     key0: {r: 0.9339623, g: 0.048460312, b: 0.048460312, a: 1}

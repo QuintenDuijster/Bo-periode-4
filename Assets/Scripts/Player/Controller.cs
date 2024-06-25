@@ -45,11 +45,6 @@ public class Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-		 // GameObject hpObject = GameObject.FindGameObjectWithTag("HpDisplay");
-		 // hpObject.GetComponent<HealthBar>().SetHealth(health.health);
-		 // hpObject.GetComponent<HealthBar>().SetMaxHealth(health.health);
-
-  //       text.text = health.health.ToString();
 		HandleGravity();
         HandleFriction();
         HandleMove();
@@ -57,7 +52,6 @@ public class Controller : MonoBehaviour
         HandleJump();
         HandleClimb();
         HandleDash();
-        
     }
 
     private void HandleFriction()

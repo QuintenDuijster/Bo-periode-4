@@ -8,8 +8,13 @@ namespace BossFight
     public class BossStart : MonoBehaviour
     {
         bool startBossFight = true;
+        private GameObject camera;
+        private ScreenShake screenShake;
+
         void Start()
         {
+            camera = GameObject.FindGameObjectWithTag("MainCamera");
+            screenShake = camera.GetComponent<ScreenShake>();
             //eventuele bossintro
         }
         private void Update()
@@ -19,7 +24,11 @@ namespace BossFight
                 gameObject.AddComponent<Boss>();
                 Destroy(this);
             }
-        }
 
+            if (screenShake.shake < 0)
+            {
+                startBossFight = true;
+            }
+        }
     }
 }

@@ -23,6 +23,7 @@ namespace BossFight
         void Start()
         {
             health = gameObject.AddComponent<bossHealth>();
+            health.maxHealth = 10;
             floor = GameObject.Find("GroundMesh");
             skybox = GameObject.Find("SkyBox");
             fist = Resources.Load("Prefabs/BossFight/Fist") as GameObject;
@@ -101,8 +102,6 @@ namespace BossFight
 
         void actions()
         {
-             
-            
             if (action && attack == 0)
             {
                 Instantiate(fist, screenBorderLeft.transform.position + Vector3.left * aOffset, Quaternion.Euler(0, 0, -90));

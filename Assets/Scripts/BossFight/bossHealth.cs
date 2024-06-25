@@ -1,8 +1,9 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Health : MonoBehaviour
+public class bossHealth : MonoBehaviour
 {
 	[SerializeField] private int maxHealth;
 	public int health { get; set; }
@@ -29,8 +30,9 @@ public class Health : MonoBehaviour
 	{
 		if (health <= 0)
 		{
-			DestroyImmediate(gameObject);
-			SceneManager.LoadScene(2);
+			GameObject player = GameObject.FindGameObjectWithTag("Player");
+			Destroy(player);
+			SceneManager.LoadScene(1);
 		}
 	}
 }

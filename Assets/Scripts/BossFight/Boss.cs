@@ -17,12 +17,12 @@ namespace BossFight
         public static GameObject player1;    
         private GameObject screenBorderRight;
         private GameObject floor;
-        Health health;
+        bossHealth health;
         private int bossHealth = 9;
 
         void Start()
         {
-            health = gameObject.AddComponent<Health>();
+            health = gameObject.AddComponent<bossHealth>();
             floor = GameObject.Find("GroundMesh");
             skybox = GameObject.Find("SkyBox");
             fist = Resources.Load("Prefabs/BossFight/Fist") as GameObject;

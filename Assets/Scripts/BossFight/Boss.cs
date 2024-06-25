@@ -1,5 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //let op action var is nog niet goed afgesteld
 
@@ -8,19 +11,21 @@ namespace BossFight
     public class Boss : MonoBehaviour
     {
         public GameObject screenBorderLeft, skybox;
-
+        List<string> attackTypes = new List<string>();
         public static System.Random random = new();
         bool action = true;
         float difficultyTime = 4f;
-        private int attack, amountOfAttacks = 4;
+        private int attack;
         private GameObject fist, beam;
-        public static GameObject player1, floor;    
+        public static GameObject player1, floor;
         private GameObject screenBorderRight;
         Health health;
         private int bossHealth = 9;
+        Animator a;
 
         void Start()
         {
+            a = GetComponent<Animator>();
             health = gameObject.AddComponent<Health>();
             floor = GameObject.Find("GroundMesh");
             skybox = GameObject.Find("SkyBox");
@@ -28,7 +33,7 @@ namespace BossFight
             player1 = GameObject.FindWithTag("Player");
             beam = Resources.Load("Prefabs/BossFight/Beam") as GameObject;
             screenBorderRight = GameObject.Find("ScreenBorderRight");
-            screenBorderLeft = GameObject.Find("ScreenBorderLeft"); 
+            screenBorderLeft = GameObject.Find("ScreenBorderLeft");
 
             if (player1 == null || fist == null || screenBorderLeft == null || screenBorderRight == null || beam == null)
             {
@@ -55,41 +60,49 @@ namespace BossFight
         IEnumerator timer()
         {
             action = false;
+            attack = random.Next(attackTypes.Count);
+
+            for(int i = 0; i < attackTypes.Count; i++)
+            {
+                a.ResetTrigger(attackTypes[i]);
+            }
 
 
+            a.SetTrigger(attackTypes[attack]);
 
             yield return new WaitForSeconds(difficultyTime);
 
-            attack = random.Next(amountOfAttacks);
+
             action = true;
 
-            if(!health.Dead)
+            if (!health.Dead)
             {
                 actions();
                 StartCoroutine("timer");
 
-            } else
+            }
+            else
             {
                 bossdefeat();
             }
-           
+
         }
 
 
         void actions()
         {
-             
-            
+
+
             if (action && attack == 0)
             {
-                Instantiate(fist, new Vector3(screenBorderLeft.transform.position.x,  player1.transform.position.y) + Vector3.left, Quaternion.Euler(0, 0, -90));
+                Instantiate(fist, new Vector3(screenBorderLeft.transform.position.x, player1.transform.position.y) + Vector3.left, Quaternion.Euler(0, 0, -90));
                 Instantiate(fist, new Vector3(screenBorderRight.transform.position.x, player1.transform.position.y) + Vector3.right, Quaternion.Euler(0, 0, 90));
                 difficultyTime = 4.5f;
             }
 
-            if(action && attack == 1)
+            if (action && attack == 1)
             {
-                Instantiate(fist, new Vector3(player1.transform.position.x, floor.transform.position.y, 0)  + Vector3.down, Quaternion.Euler(0, 0, 0));
+                Instantiate(fist, new Vector3(player1.transform.position.x, floor.transform.position.y, 0) + Vector3.down, Quaternion.Euler(0, 0, 0));
                 Instantiate(fist, new Vector3(player1.transform.position.x, skybox.transform.position.y, 0) + Vector3.up, Quaternion.Euler(0, 0, 180));
                 difficultyTime = 4.5f;
             }
@@ -112,6 +125,7 @@ namespace BossFight
         private void bossdefeat()
         {
             Debug.Log("boss dead");
+            SceneManager.LoadScene("Victory");
         }
 
     }

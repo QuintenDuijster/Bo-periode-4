@@ -1,11 +1,10 @@
-using TMPro;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Health health;
-    private TMP_Text text;
+    [SerializeField] private GameObject hitArea;
 
 	[Header("Movement")]
     [SerializeField] private float acceleration;
@@ -46,11 +45,6 @@ public class Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-		GameObject textBox = GameObject.FindGameObjectWithTag("HpDisplay");
-		text = textBox.GetComponent<TMP_Text>();
-
-        text.text = health.health.ToString();
-
 		HandleGravity();
         HandleFriction();
         HandleMove();
@@ -59,6 +53,7 @@ public class Controller : MonoBehaviour
         HandleClimb();
         HandleDash();
         HandleAnimation();
+
     }
 
     private void HandleFriction()

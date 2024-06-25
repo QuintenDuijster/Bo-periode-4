@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +6,7 @@ public class Health : MonoBehaviour
 	[SerializeField] private int maxHealth;
 	public int health { get; set; }
 	public bool Dead;
-	public HealthBar healthBar;
+	HealthBar healthBar;
 
 	public void addHealth(int index)
 	{
@@ -15,7 +14,7 @@ public class Health : MonoBehaviour
 		if (maxHealth < (newHealth + index))
 		{
 			health = maxHealth;
-			healthBar.SetHealth(health);
+			healthBar.SetMaxHealth(maxHealth);
 		}
 		else
 		{
@@ -27,7 +26,9 @@ public class Health : MonoBehaviour
 	private void Start()
 	{
 		health = maxHealth;
-		healthBar.SetMaxHealth(health);
+		Debug.Log(health);
+		Debug.Log(healthBar);
+		healthBar.SetMaxHealth(maxHealth);
 	}
 
 	private void Update()

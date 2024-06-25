@@ -7,9 +7,10 @@ namespace BossFight
 {
     public class BossStart : MonoBehaviour
     {
-        bool startBossFight = true;
+        bool startBossFight = false;
         private GameObject cam;
         private ScreenShake screenShake;
+
 
         void Start()
         {
@@ -18,7 +19,10 @@ namespace BossFight
             //eventuele bossintro
         }
         private void Update()
-        {
+        { 
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, Vector3.zero, 0.01f);
+            gameObject.transform.localScale = Vector3.MoveTowards(gameObject.transform.localScale, new Vector3(7, 7), Time.deltaTime);
+
             if (startBossFight)
             {
                 gameObject.AddComponent<Boss>();

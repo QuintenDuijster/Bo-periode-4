@@ -11,7 +11,7 @@ namespace BossFight
     public class Boss : MonoBehaviour
     {
         public GameObject screenBorderLeft, skybox;
-        List<string> attackTypes = new List<string>();
+        List<string> attackTypes = new List<string>() {"FistY", "FistX", "Spears", "Laser" };
         public static System.Random random = new();
         bool action = true;
         float difficultyTime = 4f;

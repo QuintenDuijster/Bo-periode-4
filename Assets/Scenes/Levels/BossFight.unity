@@ -659,7 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosX: 0
-  startPosY: -10
+  startPosY: -5
 --- !u!1 &814509495
 GameObject:
   m_ObjectHideFlags: 0

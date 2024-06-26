@@ -5,31 +5,39 @@ using UnityEngine;
 
 public class Beeemmm : MonoBehaviour
 {
-    int damage = 1;
+    int damage;
     int direction;
-    Vector3 velocity = Vector3.zero; 
+    float time = 0;
+    Health health;
+    Vector3 velocity = Vector3.zero;
 
     void Start()
     {
+	    health = Boss.player1.GetComponent<Health>();
         Destroy(gameObject, 4);
-    }
-
-    void SetDamage()
-    {
-        damage = 1;
     }
 
     void Update()
     {
-        transform.position = Vector3.SmoothDamp(gameObject.transform.position, new Vector3(Boss.player1.transform.position.x, Boss.floor.transform.position.y), ref velocity, 0.1f, 34, Time.deltaTime);
+        transform.position = Vector3.SmoothDamp(gameObject.transform.position, new Vector3(Boss.player1.transform.position.x, Boss.floor.transform.position.y +2), ref velocity, 0.1f, 34, Time.deltaTime);
     }
 
-	private void OnTriggerEnter2D(Collider2D collision)
+	private void OnTriggerStay2D(Collider2D collision)
 	{
-		if (collision.gameObject.tag == "Player")
+		Debug.Log(collision);
+		if (collision.gameObject == Boss.player1)
 		{
-			Health health = collision.gameObject.GetComponent<Health>();
-			health.addHealth(-damage);
+			time -= Time.deltaTime;
+			if (time <= 0)
+			{
+				damage = 1;
+				time = 1;
+				health.addHealth(-damage);
+				damage = 0;
+			}
+			Debug.Log("Damage?");
 		}
 	}
+
+	public int Damage { get => damage; }
 }

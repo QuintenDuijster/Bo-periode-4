@@ -104,7 +104,7 @@ namespace BossFight
 
             if (action && attack == 3)
             {
-                Instantiate(beam, new Vector3(player1.transform.position.x, floor.transform.position.y, 0), Quaternion.Euler(0, 0, 0));
+                Instantiate(beam, new Vector3(player1.transform.position.x, floor.transform.position.y + 2, 0), Quaternion.Euler(0, 0, 0));
                 difficultyTime = 5f;
             }
 

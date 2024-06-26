@@ -23,10 +23,18 @@ namespace BossFight
         private int bossHealth = 9;
         Animator a;
 
+        public float moveSpeed = 20f;
+        public Vector3[] patrolWaypoints = { new Vector3(-30, -7, 0), new Vector3(2, -7, 0), new Vector3(30, -7, 0), new Vector3(1, 9, 0) };
+        public Vector3[] attackWaypoints = { new Vector3(-30, -7, 0), new Vector3(2, -7, 0), new Vector3(30, -7, 0), new Vector3(1, 9, 0) };
+        private int currentPatrolWaypointIndex = 0;
+        private Vector3 currentAttackWaypoint;
+        private bool movingToAttack = false;
+        Rigidbody2D rb;
+
         void Start()
         {
             a = GetComponent<Animator>();
-
+            rb = gameObject.GetComponent<Rigidbody2D>();
             health = gameObject.AddComponent<Health>();
             health.maxHealth = bossHealth;
 
@@ -47,10 +55,66 @@ namespace BossFight
 
         }
 
+        void Update()
+        {
+            if (action == false)
+            {
+                MoveToAttackPosition();
+            } else
+            {
+                Patrol();
+            }
+        }
+
+        void MoveToAttackPosition()
+        {
+            if (!movingToAttack)
+            {
+                if (attackWaypoints.Length == 0)
+                {
+                    action = false;
+                    return;
+                }
+
+                currentAttackWaypoint = attackWaypoints[Random.Range(0, attackWaypoints.Length)];
+                movingToAttack = true;
+            }
+
+            Vector3 direction = (currentAttackWaypoint - transform.position).normalized;
+            Vector2 newPosition = rb.position + new Vector2(direction.x, direction.y) * (moveSpeed * Time.deltaTime);
+
+            rb.MovePosition(newPosition);
+
+            if (Vector3.Distance(transform.position, currentAttackWaypoint) < 0.1f)
+            {
+                movingToAttack = false;
+                StartCoroutine(timer());
+            }
+        }
+
+        void Patrol()
+        {
+            if (patrolWaypoints.Length == 0)
+            {
+                return;
+            }
+
+            Vector3 targetWaypoint = patrolWaypoints[currentPatrolWaypointIndex];
+            Vector3 direction = (targetWaypoint - transform.position).normalized;
+            Vector2 newPosition = rb.position + new Vector2(direction.x, direction.y) * (moveSpeed * Time.deltaTime);
+
+            rb.MovePosition(newPosition);
+
+            if (Vector3.Distance(transform.position, targetWaypoint) < 0.1f)
+            {
+                currentPatrolWaypointIndex = (currentPatrolWaypointIndex + 1) % patrolWaypoints.Length;
+            }
+        }
+
         IEnumerator timer()
         {
             action = false;
-            attack = 2;/*random.Next(attackTypes.Count);*/
+            attack = random.Next(attackTypes.Count);
 
             if (attack == 0 && attack == 1)
             {
@@ -68,7 +132,6 @@ namespace BossFight
             {
                 a.ResetTrigger(attackTypes[i]);
             }
-
 
             a.SetTrigger(attackTypes[attack]);
 

@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private Health health;
-    [SerializeField] private GameObject hitArea;
+	private Rigidbody2D rb;
+	private Animator animator;
+
+	private bool playWalkAudio;
+	private AudioSource walkAudio;
+
+	private bool playClimbAudio;
+	private AudioSource climbAudio;
 
 	[Header("Movement")]
     [SerializeField] private float acceleration;
@@ -36,27 +41,34 @@ public class Controller : MonoBehaviour
     private float dashCooldownTimer;
     private bool canDash = true;
 
-    private void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-        rb = GetComponent<Rigidbody2D>();
-        health = GetComponent<Health>();
-    }
+	private void Start()
+	{
+		DontDestroyOnLoad(gameObject);
+		rb = GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();
+		AudioSource[] audioSources = GetComponents<AudioSource>();
+		walkAudio = audioSources[0];
+		climbAudio = audioSources[1];
+	}
 
-    private void FixedUpdate()
-    {
+	private void Update()
+	{
+		HandleAnimations();
+		HandleSounds();
+	}
+
+	private void FixedUpdate()
+	{
 		HandleGravity();
-        HandleFriction();
-        HandleMove();
-        HandleRotation();
-        HandleJump();
-        HandleClimb();
-        HandleDash();
-        HandleAnimation();
+		HandleFriction();
+		HandleMove();
+		HandleRotation();
+		HandleJump();
+		HandleClimb();
+		HandleDash();
+	}
 
-    }
-
-    private void HandleFriction()
+	private void HandleFriction()
     {
         if ((isGrounded || isClimbing) && !(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
         {
@@ -245,14 +257,59 @@ public class Controller : MonoBehaviour
 		isGrounded = false;
     }
 
-    private void HandleAnimation()
-    {
-        ResetTriggers();
+	private void HandleAnimations()
+	{
+		ResetTriggers();
 
-    }
+		if (isGrounded && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)))
+		{
+			animator.SetTrigger("Walk");
+
+		}
+		else if (isClimbing)
+		{
+			animator.SetTrigger("Climb");
+		}
+		else if (isJumping)
+		{
+			animator.SetTrigger("Jump");
+		}
+		else if (isGrounded)
+		{
+			animator.SetTrigger("Idle");
+		}
+		else
+		{
+			animator.SetTrigger("Fall");
+		}
+	}
 
 	private void ResetTriggers()
 	{
-	
+		animator.ResetTrigger("Walk");
+		animator.ResetTrigger("Climb");
+		animator.ResetTrigger("Jump");
+		animator.ResetTrigger("Idle");
+		animator.ResetTrigger("Fall");
 	}
-}
+
+	private void HandleSounds()
+	{
+		if (playClimbAudio)
+		{
+			climbAudio.Play();
+		}
+		else
+		{
+			climbAudio.Stop();
+		}
+
+		if (playClimbAudio)
+		{
+			climbAudio.Play();
+		}
+		else
+		{
+			climbAudio.Stop();
+		}
+	}

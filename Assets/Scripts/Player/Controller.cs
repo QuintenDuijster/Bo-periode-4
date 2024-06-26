@@ -5,12 +5,6 @@ public class Controller : MonoBehaviour
 	private Rigidbody2D rb;
 	private Animator animator;
 
-	private bool playWalkAudio;
-	private AudioSource walkAudio;
-
-	private bool playClimbAudio;
-	private AudioSource climbAudio;
-
 	[Header("Movement")]
 	[SerializeField] private float acceleration;
 	[SerializeField] private int maxSpeed;
@@ -46,15 +40,6 @@ public class Controller : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 		rb = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
-		AudioSource[] audioSources = GetComponents<AudioSource>();
-		walkAudio = audioSources[0];
-		climbAudio = audioSources[1];
-	}
-
-	private void Update()
-	{
-		HandleAnimations();
-		HandleSounds();
 	}
 
 	private void FixedUpdate()
@@ -66,6 +51,7 @@ public class Controller : MonoBehaviour
 		HandleJump();
 		HandleClimb();
 		HandleDash();
+		HandleAnimations();
 	}
 
 	private void HandleFriction()
@@ -291,26 +277,5 @@ public class Controller : MonoBehaviour
 		animator.ResetTrigger("Jump");
 		animator.ResetTrigger("Idle");
 		animator.ResetTrigger("Fall");
-	}
-
-	private void HandleSounds()
-	{
-		if (playWalkAudio)
-		{
-			walkAudio.Play();
-		}
-		else
-		{
-			walkAudio.Stop();
-		}
-
-		if (playClimbAudio)
-		{
-			climbAudio.Play();
-		}
-		else
-		{
-			climbAudio.Stop();
-		}
 	}
 }

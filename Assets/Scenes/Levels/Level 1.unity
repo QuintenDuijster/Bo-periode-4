@@ -2873,6 +2873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  health: 0
   Dead: 0
 --- !u!1 &1889494242
 GameObject:

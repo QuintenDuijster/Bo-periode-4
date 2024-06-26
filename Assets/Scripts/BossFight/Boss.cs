@@ -16,7 +16,7 @@ namespace BossFight
         bool action = true;
         float difficultyTime = 4f;
         private int attack;
-        private GameObject fist, beam;
+        private GameObject fistLeft, fistRight, beam;
         public static GameObject player1, floor;
         private GameObject screenBorderRight;
         Health health;
@@ -32,13 +32,14 @@ namespace BossFight
 
             floor = GameObject.Find("GroundMesh");
             skybox = GameObject.Find("SkyBox");
-            fist = Resources.Load("Prefabs/BossFight/Fist") as GameObject;
+            fistLeft = Resources.Load("Prefabs/BossFight/FistLeft") as GameObject;
+            fistRight = Resources.Load("Prefabs/BossFight/FistRight") as GameObject;
             player1 = GameObject.FindWithTag("Player");
             beam = Resources.Load("Prefabs/BossFight/Beam") as GameObject;
             screenBorderRight = GameObject.Find("ScreenBorderRight");
             screenBorderLeft = GameObject.Find("ScreenBorderLeft");
 
-            if (player1 == null || fist == null || screenBorderLeft == null || screenBorderRight == null || beam == null)
+            if (player1 == null || fistLeft == null || screenBorderLeft == null || screenBorderRight == null || beam == null)
             {
                 Debug.Log("Loading in Boss.cs went wrong");
             }
@@ -49,9 +50,21 @@ namespace BossFight
         IEnumerator timer()
         {
             action = false;
-            attack = random.Next(attackTypes.Count - 1);
+            attack = 2;/*random.Next(attackTypes.Count);*/
 
-            for(int i = 0; i < attackTypes.Count - 1; i++)
+            if (attack == 0 && attack == 1)
+            {
+                difficultyTime = 4.5f;
+            }
+            else if (attack == 2)
+            {
+                 difficultyTime = 5.5f;
+            } else
+            {
+                difficultyTime = 5;
+            }
+
+            for (int i = 0; i < attackTypes.Count - 1; i++)
             {
                 a.ResetTrigger(attackTypes[i]);
             }
@@ -84,28 +97,24 @@ namespace BossFight
 
             if (action && attack == 0)
             {
-                Instantiate(fist, new Vector3(screenBorderLeft.transform.position.x, player1.transform.position.y) + Vector3.left, Quaternion.Euler(0, 0, -90));
-                Instantiate(fist, new Vector3(screenBorderRight.transform.position.x, player1.transform.position.y) + Vector3.right, Quaternion.Euler(0, 0, 90));
-                difficultyTime = 4.5f;
+                Instantiate(fistLeft, new Vector3(screenBorderLeft.transform.position.x, player1.transform.position.y) + Vector3.left, Quaternion.Euler(0, 0, -90));
+                Instantiate(fistRight, new Vector3(screenBorderRight.transform.position.x, player1.transform.position.y) + Vector3.right, Quaternion.Euler(0, 0, 90));
             }
 
             if (action && attack == 1)
             {
-                Instantiate(fist, new Vector3(player1.transform.position.x, floor.transform.position.y, 0) + Vector3.down, Quaternion.Euler(0, 0, 0));
-                Instantiate(fist, new Vector3(player1.transform.position.x, skybox.transform.position.y, 0) + Vector3.up, Quaternion.Euler(0, 0, 180));
-                difficultyTime = 4.5f;
+                Instantiate(fistLeft, new Vector3(player1.transform.position.x, floor.transform.position.y, 0) + Vector3.down, Quaternion.Euler(0, 0, 0));
+                Instantiate(fistRight, new Vector3(player1.transform.position.x, skybox.transform.position.y, 0) + Vector3.up, Quaternion.Euler(0, 0, 180));
             }
 
             if (action && attack == 2)
             {
                 gameObject.AddComponent<GroundSpears>();
-                difficultyTime = 5.5f;
             }
 
             if (action && attack == 3)
             {
                 Instantiate(beam, new Vector3(player1.transform.position.x, floor.transform.position.y + 2, 0), Quaternion.Euler(0, 0, 0));
-                difficultyTime = 5f;
             }
 
             action = false;

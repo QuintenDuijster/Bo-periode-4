@@ -7,7 +7,7 @@ namespace BossFight
 {
     public class BossStart : MonoBehaviour
     {
-        bool startBossFight = false;
+        bool startBossFight = true;
         private GameObject cam;
         private ScreenShake screenShake;
 

@@ -5,12 +5,14 @@ using UnityEngine;
 public class SpearDamage : MonoBehaviour
 {
     int damage = 1;
-    Vector3 velo = Vector3.zero;
     bool up = true;
     public int Damage { get => damage; }
+    Vector3 startPos;
     void Start()
     {
-        Invoke("ChangeValue", 0.5f);
+        startPos = gameObject.transform.position;
+        Invoke("ChangeValue", 0.4f);
+        transform.position += new Vector3(0 , -20);
     }
 
     void ChangeValue()
@@ -21,12 +23,14 @@ public class SpearDamage : MonoBehaviour
     
     void Update()
     {
+        
         if (up)
         {
-            Vector3.SmoothDamp(transform.position + new Vector3(0, -6, 0), transform.position + new Vector3(0, 6, 0), ref velo, 0.5f);
-        } else
+            transform.position =Vector3.MoveTowards(gameObject.transform.position, startPos + new Vector3(0, 2), 0.4f); 
+        }
+        else
         {
-            Vector3.SmoothDamp(transform.position + new Vector3(0, 6, 0), transform.position + new Vector3(0, -6, 0), ref velo, 0.5f);
-        } 
+            transform.position = Vector3.MoveTowards(gameObject.transform.position, startPos + new Vector3(0, -20), 0.4f);
+        }
     }
 }

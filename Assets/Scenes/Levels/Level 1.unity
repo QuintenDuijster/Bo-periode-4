@@ -2797,7 +2797,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0394e8cc8f643e4d8b9ee4b96c9b56a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitArea: {fileID: 1280557289}
   acceleration: 8
   maxSpeed: 35
   climbingAcceleration: 4

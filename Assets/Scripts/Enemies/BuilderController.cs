@@ -29,8 +29,6 @@ public class BuilderController : MonoBehaviour
     [SerializeField] public float throwAniLen;
     private float modUp = 5.0f;
 
-
-
     [SerializeField]public ContactFilter2D ContactFilter;
     internal Collider2D groundEdgeDetection;
     private GameObject groundChecker;
@@ -44,8 +42,6 @@ public class BuilderController : MonoBehaviour
     internal Vector3 playerPos;
     private bool facingRight;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         groundChecker = transform.GetChild(0).gameObject;
@@ -58,19 +54,9 @@ public class BuilderController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //debug
-        Debug.Log(groundEdgeDetection.IsTouching(ContactFilter));
-        Debug.Log(transform.GetChild(0).gameObject.transform.position.y);
+        
         playerPos = player.transform.position;
-
-        if (Mathf.Abs(playerPos.y - transform.position.y + DetectionOffsetY) < DetectionRangeY && Mathf.Abs(playerPos.x - transform.position.x) < DetectionRangeX)
-        {
-            Debug.DrawRay(transform.position, playerPos - transform.position);
-        }
-
-
         isGrounded = groundEdgeDetection.IsTouching(ContactFilter);
-
 
         if (transform.position.x < playerPos.x)
         {
@@ -82,7 +68,6 @@ public class BuilderController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             facingRight = false;
         }
-
         HandleAnimation();
     }
 
@@ -119,7 +104,6 @@ public class BuilderController : MonoBehaviour
     public void approachPlayer(Rigidbody2D rb, GameObject player)
     {
 
-        //Debug.Log("approachPlayer.playerPos  : " + playerPos);
         Vector2 movementDirection = playerPos - transform.position;
         movementDirection.Normalize();
         //movementDirection.y *= 9 / 16;
@@ -128,20 +112,10 @@ public class BuilderController : MonoBehaviour
 
         Vector2 newVelocity = rb.velocity * inheritanceFactor + movementDirection * enemyAcceleration;
 
-        //if (newVelocity.x < 0)
-        //{
-        //    transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        //    facingRight = false;
-        //}
-        //else
-        //{
-        //    transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-        //    facingRight = true;
-        //}
+        
         if (isGrounded)
         {
             if (MathF.Abs(newVelocity.x) > maxSpeed) newVelocity.x *= decelerationFactor;
-            //if (MathF.Abs(newVelocity.y) > maxSpeed) newVelocity.y *= decelerationFactor;
             newVelocity.y = -MathF.Abs(newVelocity.y);
         }
         else newVelocity.x *= .1f;
@@ -160,7 +134,6 @@ public class BuilderController : MonoBehaviour
         GameObject projectile = Instantiate(projectilePrefab, spawningLocation, Quaternion.identity);
         Rigidbody2D projectileRB = projectile.GetComponent<Rigidbody2D>();
         projectileRB.velocity = (playerPos + Vector3.up * modUp - transform.position).normalized * throwSpeed;
-        //throwCooldownTimer = throwCooldown;
         ResetAllTriggers();
     }
 

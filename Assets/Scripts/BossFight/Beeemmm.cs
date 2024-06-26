@@ -24,7 +24,6 @@ public class Beeemmm : MonoBehaviour
 
 	private void OnTriggerStay2D(Collider2D collision)
 	{
-		Debug.Log(collision);
 		if (collision.gameObject == Boss.player1)
 		{
 			time -= Time.deltaTime;
@@ -35,7 +34,6 @@ public class Beeemmm : MonoBehaviour
 				health.addHealth(-damage);
 				damage = 0;
 			}
-			Debug.Log("Damage?");
 		}
 	}
 

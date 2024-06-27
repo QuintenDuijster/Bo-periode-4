@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/Player/Inputs.cs.meta
-guid: 05563887d659d634d805314cc3b40899
-========
 guid: 98a61eec54d72d748b380d527b2b4f7f
->>>>>>>> origin/enemyController:Assets/Scripts/Enemies/CollisionChecker.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -27,14 +27,13 @@ public class Throwable : MonoBehaviour
 	{
 		if (!(collision.gameObject.tag is "Player" or "Throwable")  )
 		{
-			Debug.Log("test");
 
 			if (collision.gameObject.TryGetComponent<Health>(out Health health))
 			{
 				health.addHealth(-damage);
 			}
 
-			Destroy(gameObject);
+			Destroy(gameObject, 3);
 		}
 	}
 }

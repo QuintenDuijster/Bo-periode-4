@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2513145631421146413}
   - component: {fileID: 8546496909455775720}
-  - component: {fileID: 5454337867070759154}
   m_Layer: 7
   m_Name: groundDetection
   m_TagString: Ground
@@ -27,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 3374793145073451673}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.85, y: -2.16, z: 0}
-  m_LocalScale: {x: 0.82934904, y: 2.976138, z: 1}
+  m_LocalPosition: {x: 2.09, y: -2.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4662709290183554014}
@@ -85,51 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5454337867070759154
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3374793145073451673}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &7303013920986269605
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +97,7 @@ GameObject:
   - component: {fileID: 6155233624181637678}
   - component: {fileID: 7389781081331967053}
   - component: {fileID: 3104001854732182531}
-  - component: {fileID: 3875247692640283655}
+  - component: {fileID: 3173624035676433533}
   - component: {fileID: 1385409796866133993}
   m_Layer: 0
   m_Name: builderEnemy
@@ -162,7 +116,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.57, y: 7.52, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2513145631421146413}
@@ -206,8 +160,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -255187515
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1632241569, guid: 56187561f1d9ab64cb4cb0c967771660, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -277,7 +231,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7303013920986269605}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b1cc38319b3dcd3439ef8971d2632bd2, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -313,7 +267,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6, y: 3.9228926}
   m_EdgeRadius: 0
---- !u!114 &3875247692640283655
+--- !u!114 &3173624035676433533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,23 +279,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af49639bdd78d6746838b06522f2c8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAcceleration: 4
+  minAcceleration: 5
   maxAcceleration: 10
-  maxSpeed: 15
-  decelerationFactor: 0.5
-  inheritanceFactor: 0.1
-  slowDownDistance: 2
-  DetectionRangeX: 150
-  DetectionRangeY: 15
+  maxSpeed: 30
+  decelerationFactor: 0.2
+  inheritanceFactor: 0.4
+  slowDownDistance: 0
+  DetectionRangeX: 300
+  DetectionRangeY: 300
   DetectionOffsetY: 15
-  damage: 1
-  throwCooldown: 4
-  throwSpeed: 25
-  projectileOffset: 3
+  damage: 1325
+  throwCooldown: 5
+  throwSpeed: 20
+  projectileOffset: 1
   projectilePrefab: {fileID: 6240550344276336253, guid: a71b326f572064d4a8f73e92df515ea2, type: 3}
-  throwAniLen: 1.5
+  throwAniLen: 1.1
   ContactFilter:
-    useTriggers: 1
+    useTriggers: 0
     useLayerMask: 0
     useDepth: 0
     useOutsideDepth: 0
@@ -349,8 +303,8 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 4294967295
-    minDepth: -1
+      m_Bits: 128
+    minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0

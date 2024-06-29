@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class SoldierController : MonoBehaviour
@@ -12,128 +15,116 @@ public class SoldierController : MonoBehaviour
     [SerializeField] public float inheritanceFactor = .4f;
     [SerializeField] public float slowDownDistance;
     internal bool facingRight;
+    private GameObject groundChecker;
 
     [Header("Detection")]
     [SerializeField] public float DetectionRangeX = 150;
     [SerializeField] public float DetectionRangeY = 15;
     [SerializeField] public float DetectionOffsetY = 15;
 
+
     [Header("Combat")]
     [SerializeField] public int damage;
-    [SerializeField] public float reach;
     [SerializeField] public float stabCooldown;
+    [SerializeField] public float warningTime;
     private float stabCooldownTimer = -1.0f;
+    private GameObject stabChecker;
+    private Collider2D stabCollider;
 
+    private Vector3 playerPos;
     private Animator animator;
-    internal GameObject player;
-    internal Vector3 playerPos;
-    private GameObject groundChecker;
-    internal Collider2D groundEdgeDetection;
-    Rigidbody2D rb;
+    private GameObject player;
+    private Rigidbody2D rb;
+    private bool shouldStab;
+    private bool shouldWalk;
 
+    // Start is called before the first frame update
     void Start()
     {
         groundChecker = transform.GetChild(0).gameObject;
-
-        groundEdgeDetection = groundChecker.GetComponent<Collider2D>();
-
+        stabChecker = transform.GetChild(1).gameObject;
+        stabCollider = stabChecker.GetComponent<Collider2D>();
 
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
+
+
+        //Debug                  Debug.log();
     }
 
-
+    // Update is called once per frame
     void FixedUpdate()
     {
-        //Debug.Log(stabCooldownTimer);
+        Collider2D hitStab = Physics2D.OverlapBox(stabChecker.transform.position, stabChecker.transform.localScale, stabChecker.transform.rotation.z);
+        Collider2D hitGround = Physics2D.OverlapBox(groundChecker.transform.position, groundChecker.transform.localScale, groundChecker.transform.rotation.z);
+
+        if (hitStab != null)
+        {
+            shouldStab = hitStab.CompareTag("Player");
+            //Debug.Log($"{hit.tag}, {shouldStab}");
+        }
+
+        if (hitGround != null)
+        {
+            playerPos = player.transform.position;
+            if (Mathf.Abs(playerPos.y - transform.position.y + DetectionOffsetY) < DetectionRangeY && Mathf.Abs(playerPos.x - transform.position.x) < DetectionRangeX)
+            {
+                shouldWalk = hitGround.CompareTag("Ground");
+            }
+        }
+
         if (stabCooldownTimer > 0)
         {
             stabCooldownTimer -= Time.deltaTime;
-            if (stabCooldown - stabCooldownTimer > 2.0f)
+            if (stabCooldown - stabCooldownTimer > warningTime)
             {
-                RaycastHit2D search;
-                if (facingRight)
+                if (shouldStab)
                 {
-                    Debug.DrawRay(transform.position, Vector2.right * reach, Color.green);
-                    search = Physics2D.Raycast(transform.position, Vector2.right, reach);
+
+
+
+
+
+                    //TODO: damage this gameobject, the player
+                    Health quintenGo = hitStab.gameObject.GetComponent<Health>();
+                    quintenGo.addHealth(-damage);
+
+
+
+
+                    stabCooldownTimer = -1.0f;
                 }
-                else
-                {
-                    Debug.DrawRay(transform.position, Vector2.left * reach, Color.green);
-                    search = Physics2D.Raycast(transform.position, Vector2.left, reach);
-                }
-                Health hp = search.transform.gameObject.GetComponent<Health>();
-                if (hp != null)
-                {
-                    hp.addHealth(-damage);
-                }
+            }
+        }
+        else
+        {
+            ResetÀnimationTriggers();
+            if (shouldWalk)
+            {
+                animator.SetTrigger("Walking");
+                    approachPlayer(rb, player);
             }
             else
             {
-                //Debug.Log((Mathf.Abs(playerPos.y - transform.position.y + DetectionOffsetY) < DetectionRangeY) + " : " + (Mathf.Abs(playerPos.x - transform.position.x) < DetectionRangeX));
-                //player detection
-                playerPos.x = player.transform.position.x;
-                playerPos.y = player.transform.position.y;
-                if (Mathf.Abs(playerPos.y - transform.position.y + DetectionOffsetY) < DetectionRangeY && Mathf.Abs(playerPos.x - transform.position.x) < DetectionRangeX)
-                {
-                    ResetÀnimationTriggers();
-                    animator.SetTrigger("Walking");
-                    approachPlayer(rb, player);
-                }
-                else
-                {
-                    ResetÀnimationTriggers();
-                    animator.SetTrigger("Idle");
-                }
-
-                //
-                RaycastHit2D search;
-                if (facingRight)
-                {
-                    Debug.DrawRay(transform.position, Vector2.right * reach, Color.green);
-                    search = Physics2D.Raycast(transform.position, Vector2.right, reach);
-                }
-                else
-                {
-                    Debug.DrawRay(transform.position, Vector2.left * reach, Color.green);
-                    search = Physics2D.Raycast(transform.position, Vector2.left, reach);
-                }
-
-                if (search && search.transform.gameObject.tag == "Player")
-                { 
-                    ResetÀnimationTriggers();
-                    animator.SetTrigger("Stab");
-                    stabCooldownTimer = stabCooldown;
-                }
+                animator.SetTrigger("Idle");
             }
 
-
-            //int layer;
-
-            //if (search)
-            //{
-            //    layer = search.transform.gameObject.layer;
-            //}
-
-            //RaycastHit2D search = Physics2D.Raycast(transform.position);
-            //Vector2.Distance();
+            if (shouldStab)
+            {
+                ResetÀnimationTriggers();
+                animator.SetTrigger("Stab");
+                stabCooldownTimer = stabCooldown;
+            }
         }
-    }
-    private void ResetÀnimationTriggers()
-    {
-        animator.ResetTrigger("Stab");
-        animator.ResetTrigger("Idle");
-        animator.ResetTrigger("Walking");
-    }
 
-
+    }
 
     private float enemyAcceleration;
+
     public void approachPlayer(Rigidbody2D rb, GameObject player)
     {
 
-        //Debug.Log("approachPlayer.playerPos  : " + playerPos);
         Vector2 movementDirection = playerPos - transform.position;
         movementDirection.Normalize();
         //movementDirection.y *= 9 / 16;
@@ -142,42 +133,32 @@ public class SoldierController : MonoBehaviour
 
         Vector2 newVelocity = rb.velocity * inheritanceFactor + movementDirection * enemyAcceleration;
 
-        if (newVelocity.x < 0)
+
+        if (true)
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            facingRight = false;
+            if (MathF.Abs(newVelocity.x) > maxSpeed) newVelocity.x *= decelerationFactor;
+            newVelocity.y = -MathF.Abs(newVelocity.y);
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            facingRight = true;
+            newVelocity.x *= .1f;
+            newVelocity.y = -MathF.Abs(newVelocity.y);
         }
-        if (edgeDetection())
-        {
-            if (MathF.Abs(newVelocity.x) > maxSpeed) newVelocity.x *= decelerationFactor;
-            if (MathF.Abs(newVelocity.y) > maxSpeed) newVelocity.y *= decelerationFactor;
-        }
-        else newVelocity.x *= .1f;
+
 
         rb.velocity = newVelocity;
 
         //Debug.Log($"{math.abs(newVelocity.x)},  {math.abs(newVelocity.y)}  MovementDir" + movementDirection.x +"  "+ movementDirection.y);    
     }
-    bool edgeDetection()
+    private void ResetÀnimationTriggers()
     {
-        if (facingRight)
-        {
-            Debug.DrawRay(transform.position, new Vector2(1f, -5f));
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(1f, -5f));
-            //Debug.Log(hit.);
-            return hit;
-        }
-        else
-        {
-            Debug.DrawRay(transform.position, new Vector2(-1f, -5f));
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(-1f, -5f));
-            //Debug.Log(hit);
-            return hit;
-        }
+        animator.ResetTrigger("Stab");
+        animator.ResetTrigger("Idle");
+        animator.ResetTrigger("Walking");
+    }
+
+    private void DamageGameObject(Collider2D cooll)
+    {
+        throw new NotImplementedException();
     }
 }

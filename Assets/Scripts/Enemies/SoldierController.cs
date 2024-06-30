@@ -103,7 +103,7 @@ public class SoldierController : MonoBehaviour
             if (shouldWalk)
             {
                 animator.SetTrigger("Walking");
-                    approachPlayer(rb, player);
+                approachPlayer(rb, player);
             }
             else
             {

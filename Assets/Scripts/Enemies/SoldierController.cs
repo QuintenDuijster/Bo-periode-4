@@ -59,10 +59,16 @@ public class SoldierController : MonoBehaviour
         Collider2D hitStab = Physics2D.OverlapBox(stabChecker.transform.position, stabChecker.transform.localScale, stabChecker.transform.rotation.z);
         Collider2D hitGround = Physics2D.OverlapBox(groundChecker.transform.position, groundChecker.transform.localScale, groundChecker.transform.rotation.z);
 
+        HandleRotatioin();
+
         if (hitStab != null)
         {
             shouldStab = hitStab.CompareTag("Player");
             //Debug.Log($"{hit.tag}, {shouldStab}");
+        }
+        else
+        {
+            shouldStab = false;
         }
 
         if (hitGround != null)
@@ -73,6 +79,11 @@ public class SoldierController : MonoBehaviour
                 shouldWalk = hitGround.CompareTag("Ground");
             }
         }
+        else
+        {
+            shouldWalk = false;
+        }
+
 
         if (stabCooldownTimer > 0)
         {
@@ -87,8 +98,8 @@ public class SoldierController : MonoBehaviour
 
 
                     //TODO: damage this gameobject, the player
-                    Health quintenGo = hitStab.gameObject.GetComponent<Health>();
-                    quintenGo.addHealth(-damage);
+                    Health hp = hitStab.GetComponent<Health>();
+                    hp.addHealth(-damage);
 
 
 
@@ -102,7 +113,7 @@ public class SoldierController : MonoBehaviour
             ResetÀnimationTriggers();
             if (shouldWalk)
             {
-                animator.SetTrigger("Walking");
+                animator.SetTrigger("Walk");
                 approachPlayer(rb, player);
             }
             else
@@ -120,6 +131,20 @@ public class SoldierController : MonoBehaviour
 
     }
 
+    private void HandleRotatioin()
+    {
+        if (transform.position.x < playerPos.x)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            facingRight = true;
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            facingRight = false;
+        }
+    }
+
     private float enemyAcceleration;
 
     public void approachPlayer(Rigidbody2D rb, GameObject player)
@@ -134,7 +159,7 @@ public class SoldierController : MonoBehaviour
         Vector2 newVelocity = rb.velocity * inheritanceFactor + movementDirection * enemyAcceleration;
 
 
-        if (true)
+        if (shouldWalk)
         {
             if (MathF.Abs(newVelocity.x) > maxSpeed) newVelocity.x *= decelerationFactor;
             newVelocity.y = -MathF.Abs(newVelocity.y);
@@ -154,7 +179,7 @@ public class SoldierController : MonoBehaviour
     {
         animator.ResetTrigger("Stab");
         animator.ResetTrigger("Idle");
-        animator.ResetTrigger("Walking");
+        animator.ResetTrigger("Walk");
     }
 
     private void DamageGameObject(Collider2D cooll)

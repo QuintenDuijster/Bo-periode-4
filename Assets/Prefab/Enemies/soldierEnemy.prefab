@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 2469245915339339758}
   - component: {fileID: 4353770176038284133}
   - component: {fileID: 7926841560653061007}
+  - component: {fileID: 677694027348584827}
   - component: {fileID: 6096258874498081360}
   - component: {fileID: 4703280707048376422}
   - component: {fileID: 5230062328684201946}
@@ -198,6 +199,19 @@ MonoBehaviour:
   damage: 10
   stabCooldown: 1.63
   warningTime: 0.5
+--- !u!114 &677694027348584827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7098252717396251330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e6a164fe6650b43a261ee4d0686ac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
 --- !u!95 &6096258874498081360
 Animator:
   serializedVersion: 5
